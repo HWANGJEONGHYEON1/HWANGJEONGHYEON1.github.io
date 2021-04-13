@@ -16,12 +16,12 @@
 
 #title: Practical coding
 #title: 학습하고 적용하고 공유하자
-title: Learn, apply and share
-email: min9nim@gmail.com
+title: 오래달리기 잘하는 개발자
+email: deert101@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  SW 개발에 대한 이야기
+  꾸준히, 천천히 달려가는 개발자
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://min9nim.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://hwangjeonghyoen1.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 github_username: hwangjeonghyoen1
 facebook_username:  hwangjeonghyeon
