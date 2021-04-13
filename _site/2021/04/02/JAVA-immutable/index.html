@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+  
+  <title>Immutable</title>
+  <meta name="description" content="Immutable Object">
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/2021/04/02/JAVA-immutable/">
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="오래달리기처럼" href="/feed.xml">
+
+  
+
+  
+  <meta property="og:title" content="Immutable">
+  <meta property="og:site_name" content="오래달리기처럼">
+  <meta property="og:url" content="/2021/04/02/JAVA-immutable/">
+  <meta property="og:description" content="Immutable Object">
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="jekyllrb">
+  <meta name="twitter:title" content="Immutable">
+  <meta name="twitter:description" content="Immutable Object">
+  
+    <meta name="twitter:creator" content="jekyllrb">
+  
+  
+
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+
+  
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">오래달리기처럼</a>
+
+    <nav class="site-nav">
+      
+        
+        <a class="page-link" href="/about/">About</a>
+      
+        
+        <a class="page-link" href="/archives/">Archives</a>
+      
+        
+        <a class="page-link" href="https://github.com/HWANGJEONGHYEON1/">GitHub</a>
+      
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    
+      <h1 class="post-title" itemprop="name headline">Immutable</h1>
+    
+    <p class="post-meta"><time datetime="2021-04-02T19:22:21+09:00" itemprop="datePublished">Apr 2, 2021</time> •
+  
+    
+    
+      
+        <a href="/categories/java/">java</a>
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+
+
+</p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="immutable-object">Immutable Object</h1>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Immutable</code></p>
+
+  <p>객체지향 프로그래밍에 있어 불변객체는 생성 후 그 상태를 바꿀 수 없는 객체를 말한다.</p>
+</blockquote>
+
+<p><em>Single Responsibility Principle</em></p>
+<ul>
+  <li>객체는 단 하나의 책임을 가지도록 설계해야한다.</li>
+  <li>(하나의 객체가 여러 기능을 수행하게 된다면 여러 객체와 의존 관계가 맺어지기 때문에 많은 객체들과 관계가 형성되는 것은 그만큼 변경의 가능성도 높아진다고 생각된다.)</li>
+  <li>변경이 있을 때 최소화 하기 위해 책임을 최소한으로 가져야 한다.
+    <blockquote>
+      <p>설계시 메서드나 인스턴스 필드의 갯수와 규모를 최대한 적게 명시할 수 있도록 작성해야한다.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="불변이-중유한-이유">불변이 중유한 이유</h2>
+<ul>
+  <li>외부에서 변경이 가능할 경우 상태 변화를 추적하기 어려워진다.</li>
+  <li><code class="language-plaintext highlighter-rouge">일급 컬렉션</code>, <code class="language-plaintext highlighter-rouge">원시값을 클래스로 감싸는 작업</code>
+    <ul>
+      <li>연관된 조작을 해당 클래스 내부에서만 다룰 수 있다.</li>
+      <li>리턴된 Collection이 외부에서 변경이 가능할 경우 만드는 의미가 반감된다.</li>
+      <li>외부에서 Collection을 수정하는 행위는 응집도가 떨어지므로 <em>지양</em> 해야한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="불변-타입">불변 타입</h2>
+<ul>
+  <li>String, Boolean, Integer, Float, Long</li>
+  <li>변경불가라는 것은 heap 영역에서의 변경불가</li>
+</ul>
+
+  </div>
+
+  
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      
+
+&copy;  - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="/feed.xml">RSS</a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+  
+  <title>스프링 빈 스코프</title>
+  <meta name="description" content="Bean Scope 빈이 존재할 수 있는 범위 스프링은 다양한 스코프를 지원 싱글톤 : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위 빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환 예제 ```java @Test void singletonTest() { AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SingletonBean.class);">
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/2021/04/10/Spring-beanScope/">
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="오래달리기처럼" href="/feed.xml">
+
+  
+
+  
+  <meta property="og:title" content="스프링 빈 스코프">
+  <meta property="og:site_name" content="오래달리기처럼">
+  <meta property="og:url" content="/2021/04/10/Spring-beanScope/">
+  <meta property="og:description" content="Bean Scope 빈이 존재할 수 있는 범위 스프링은 다양한 스코프를 지원 싱글톤 : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위 빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환 예제 ```java @Test void singletonTest() { AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SingletonBean.class);">
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="jekyllrb">
+  <meta name="twitter:title" content="스프링 빈 스코프">
+  <meta name="twitter:description" content="Bean Scope 빈이 존재할 수 있는 범위 스프링은 다양한 스코프를 지원 싱글톤 : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위 빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환 예제 ```java @Test void singletonTest() { AnnotationConfigApplicationContext ac ...">
+  
+    <meta name="twitter:creator" content="jekyllrb">
+  
+  
+
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+
+  
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">오래달리기처럼</a>
+
+    <nav class="site-nav">
+      
+        
+        <a class="page-link" href="/about/">About</a>
+      
+        
+        <a class="page-link" href="/archives/">Archives</a>
+      
+        
+        <a class="page-link" href="https://github.com/HWANGJEONGHYEON1/">GitHub</a>
+      
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    
+      <h1 class="post-title" itemprop="name headline">스프링 빈 스코프</h1>
+    
+    <p class="post-meta"><time datetime="2021-04-10T19:22:21+09:00" itemprop="datePublished">Apr 10, 2021</time> •
+  
+    
+    
+      
+    
+      
+        <a href="/categories/spring/">spring</a>
+      
+    
+      
+    
+      
+    
+  
+
+
+
+</p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="bean-scope">Bean Scope</h2>
+<ul>
+  <li>빈이 존재할 수 있는 범위</li>
+  <li>스프링은 다양한 스코프를 지원</li>
+  <li><code class="language-plaintext highlighter-rouge">싱글톤</code> : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위
+    <ul>
+      <li>빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환</li>
+      <li>
+        <p>예제
+ ```java
+ @Test
+ void singletonTest() {
+  AnnotationConfigApplicationContext ac  = new AnnotationConfigApplicationContext(SingletonBean.class);</p>
+
+        <p>final SingletonBean bean1 = ac.getBean(SingletonBean.class);
+  final SingletonBean bean2 = ac.getBean(SingletonBean.class);
+  System.out.println(“bean1 = “ + bean1);
+  System.out.println(“bean2 = “ + bean2);
+  assertThat(bean1).isSameAs(bean2);
+  ac.close();
+ }</p>
+      </li>
+    </ul>
+
+    <p>@Scope(“singleton”)
+ static class SingletonBean {
+   @PostConstruct
+   public void init() {
+       System.out.println(“Singleton init”);
+   }</p>
+
+    <p>@PreDestroy
+     public void destroy() {
+       System.out.println(“Singleton destroy”);
+   }
+ }</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
+    <p>결과 
+ Singleton init
+ bean1 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
+ bean2 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
+ Singleton destroy
+ ```</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">프로토타입</code> : 빈의 생성과 의존관계 주입, 초기화까지만 관여, 매우 짧은 범위
+    <ul>
+      <li>스프링 컨테이너에 조회하면 항상 새로운 인스터스를 생성하여 반환
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProtoTypeTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kt">void</span> <span class="nf">prototypeTest</span><span class="o">()</span> <span class="o">{</span>
+      <span class="kd">final</span> <span class="nc">AnnotationConfigApplicationContext</span> <span class="n">ac</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AnnotationConfigApplicationContext</span><span class="o">(</span><span class="nc">PrototypeBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+      <span class="kd">final</span> <span class="nc">PrototypeBean</span> <span class="n">bean1</span> <span class="o">=</span> <span class="n">ac</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="nc">PrototypeBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+      <span class="kd">final</span> <span class="nc">PrototypeBean</span> <span class="n">bean2</span> <span class="o">=</span> <span class="n">ac</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="nc">PrototypeBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"bean1 = "</span> <span class="o">+</span> <span class="n">bean1</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"bean2 = "</span> <span class="o">+</span> <span class="n">bean2</span><span class="o">);</span>
+      <span class="n">assertThat</span><span class="o">(</span><span class="n">bean1</span><span class="o">).</span><span class="na">isNotEqualTo</span><span class="o">(</span><span class="n">bean2</span><span class="o">);</span>
+      <span class="n">ac</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Scope</span><span class="o">(</span><span class="s">"prototype"</span><span class="o">)</span>
+  <span class="kd">static</span> <span class="kd">class</span> <span class="nc">PrototypeBean</span> <span class="o">{</span>
+      <span class="nd">@PostConstruct</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"singleton init"</span><span class="o">);</span>
+      <span class="o">}</span>
+
+      <span class="nd">@PreDestroy</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">()</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Singleton destroy"</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></div>        </div>
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 실행결과
+ singleton init
+ singleton init
+ bean1 = hello.core.scope.ProtoTypeTest$PrototypeBean@3b0fe47a
+ bean2 = hello.core.scope.ProtoTypeTest$PrototypeBean@202b0582
+</code></pre></div>        </div>
+      </li>
+      <li>빈 생성이 새로 만들어지고 @PreDestroy가 호출되지 않는다.</li>
+      <li>직접 bean2.destroy() 호출해줘야한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">웹 관련 스코프</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">request</code> : 웹 요청이 오고 나갈때까지 유지
+        <ul>
+          <li>동시에 여러 HTTP 요청이 오면 정확히 어떤 요청이 남긴 로그인지 구분하기 어렵기때문에 request 스코프 사용하면 유용하다.</li>
+          <li>HTTP 요청 당 하나씩 생성, 요청이 끝나면 소멸</li>
+          <li></li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">세션</code> : 웹 세션이 생성되고 종료될때까지 유지</li>
+      <li><code class="language-plaintext highlighter-rouge">application</code> : 웹의 서블릿 컨텍스트와 같은 범위</li>
+    </ul>
+  </li>
+  <li>스코프와 프록시
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@Scope(value= "request", proxyMode = ScopedProxyMode.TARGET_CLASS)</code></li>
+      <li>CGLIB 라이브러리로 내 클래스를 상속 받은 가짜 프록시 객체를 만들어주서 주입</li>
+      <li>가짜 프록시 객체는 요청이오면 그때 내부에서 진짜 빈을 요청하는 위임 로직이 있음.</li>
+      <li>내부에 실제 MyLogger를 찾는 방법을 알고 있다.</li>
+      <li>동작 원리
+        <ul>
+          <li>CGLiB라는 라이브러리로 내 클래스를 상속 받은 가짜 프록시 객체를 만들어 주입</li>
+          <li>실제 요청이 오면 내부에서 실제빈을 요청하는 위임로직이 들어있음</li>
+          <li>request scope와 상관없음, 내부에 단순한 위임로직만 있고, 싱글톤처럼 동작한다.</li>
+        </ul>
+      </li>
+      <li>특징 정리
+        <ul>
+          <li>싱글톤처럼 쓰듯이 request scope를 사용할 수 있다.</li>
+          <li>Provider, 프록시의 핵심 아이디어는 진짜 객체 조회를 꼭 필요한 시점까지 지연시켜준다.</li>
+          <li>애노테이션 설정 변경만으로 원본 객체를 프록시 객체로 대채할 수 있다.</li>
+          <li>DI 컨테이너와 다형성</li>
+          <li>웹 스코프가 아니어도 사용할 수 있다.</li>
+        </ul>
+      </li>
+      <li>주의점
+        <ul>
+          <li>싱글톤처럼 사용하는 것 같지만 다르게 동작하기 때문에 주의</li>
+          <li>scope를 꼭 필요한 경우에만 사용해야한다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+  </div>
+
+  
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      
+
+&copy;  - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="/feed.xml">RSS</a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

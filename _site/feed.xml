@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <generator uri="http://jekyllrb.com" version="4.2.0">Jekyll</generator>
+  
+  
+  <link href="/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-04-13T00:18:34+09:00</updated>
+  <id>//</id>
+
+  
+    <title type="html">오래달리기처럼</title>
+  
+
+  
+    <subtitle>천천히 꾸준하게 포기하지 않고 나아가는 사람.</subtitle>
+  
+
+  
+
+  
+  
+    <entry>
+      
+      <title type="html">Welcome to Jekyll!</title>
+      
+      
+      <link href="/2021/04/12/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" />
+      
+      <published>2021-04-12T19:22:21+09:00</published>
+      <updated>2021-04-12T19:22:21+09:00</updated>
+      <id>/2021/04/12/welcome-to-jekyll</id>
+      <content type="html" xml:base="/2021/04/12/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="jekyll" />
+      
+        <category term="update" />
+      
+
+      
+
+      
+        <summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">스프링 빈 스코프</title>
+      
+      
+      <link href="/2021/04/10/Spring-beanScope/" rel="alternate" type="text/html" title="스프링 빈 스코프" />
+      
+      <published>2021-04-10T19:22:21+09:00</published>
+      <updated>2021-04-10T19:22:21+09:00</updated>
+      <id>/2021/04/10/Spring%20beanScope</id>
+      <content type="html" xml:base="/2021/04/10/Spring-beanScope/">&lt;h2 id=&quot;bean-scope&quot;&gt;Bean Scope&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;빈이 존재할 수 있는 범위&lt;/li&gt;
+  &lt;li&gt;스프링은 다양한 스코프를 지원&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;싱글톤&lt;/code&gt; : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위
+    &lt;ul&gt;
+      &lt;li&gt;빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;예제
+ ```java
+ @Test
+ void singletonTest() {
+  AnnotationConfigApplicationContext ac  = new AnnotationConfigApplicationContext(SingletonBean.class);&lt;/p&gt;
+
+        &lt;p&gt;final SingletonBean bean1 = ac.getBean(SingletonBean.class);
+  final SingletonBean bean2 = ac.getBean(SingletonBean.class);
+  System.out.println(“bean1 = “ + bean1);
+  System.out.println(“bean2 = “ + bean2);
+  assertThat(bean1).isSameAs(bean2);
+  ac.close();
+ }&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;@Scope(“singleton”)
+ static class SingletonBean {
+   @PostConstruct
+   public void init() {
+       System.out.println(“Singleton init”);
+   }&lt;/p&gt;
+
+    &lt;p&gt;@PreDestroy
+     public void destroy() {
+       System.out.println(“Singleton destroy”);
+   }
+ }&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;결과 
+ Singleton init
+ bean1 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
+ bean2 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
+ Singleton destroy
+ ```&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;프로토타입&lt;/code&gt; : 빈의 생성과 의존관계 주입, 초기화까지만 관여, 매우 짧은 범위
+    &lt;ul&gt;
+      &lt;li&gt;스프링 컨테이너에 조회하면 항상 새로운 인스터스를 생성하여 반환
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProtoTypeTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prototypeTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PrototypeBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrototypeBean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PrototypeBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrototypeBean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PrototypeBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bean1 = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bean2 = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isNotEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nd&quot;&gt;@Scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;prototype&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrototypeBean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@PostConstruct&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;singleton init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;nd&quot;&gt;@PreDestroy&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Singleton destroy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 실행결과
+ singleton init
+ singleton init
+ bean1 = hello.core.scope.ProtoTypeTest$PrototypeBean@3b0fe47a
+ bean2 = hello.core.scope.ProtoTypeTest$PrototypeBean@202b0582
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;빈 생성이 새로 만들어지고 @PreDestroy가 호출되지 않는다.&lt;/li&gt;
+      &lt;li&gt;직접 bean2.destroy() 호출해줘야한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;웹 관련 스코프&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request&lt;/code&gt; : 웹 요청이 오고 나갈때까지 유지
+        &lt;ul&gt;
+          &lt;li&gt;동시에 여러 HTTP 요청이 오면 정확히 어떤 요청이 남긴 로그인지 구분하기 어렵기때문에 request 스코프 사용하면 유용하다.&lt;/li&gt;
+          &lt;li&gt;HTTP 요청 당 하나씩 생성, 요청이 끝나면 소멸&lt;/li&gt;
+          &lt;li&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;세션&lt;/code&gt; : 웹 세션이 생성되고 종료될때까지 유지&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;application&lt;/code&gt; : 웹의 서블릿 컨텍스트와 같은 범위&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스코프와 프록시
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Scope(value= &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;CGLIB 라이브러리로 내 클래스를 상속 받은 가짜 프록시 객체를 만들어주서 주입&lt;/li&gt;
+      &lt;li&gt;가짜 프록시 객체는 요청이오면 그때 내부에서 진짜 빈을 요청하는 위임 로직이 있음.&lt;/li&gt;
+      &lt;li&gt;내부에 실제 MyLogger를 찾는 방법을 알고 있다.&lt;/li&gt;
+      &lt;li&gt;동작 원리
+        &lt;ul&gt;
+          &lt;li&gt;CGLiB라는 라이브러리로 내 클래스를 상속 받은 가짜 프록시 객체를 만들어 주입&lt;/li&gt;
+          &lt;li&gt;실제 요청이 오면 내부에서 실제빈을 요청하는 위임로직이 들어있음&lt;/li&gt;
+          &lt;li&gt;request scope와 상관없음, 내부에 단순한 위임로직만 있고, 싱글톤처럼 동작한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;특징 정리
+        &lt;ul&gt;
+          &lt;li&gt;싱글톤처럼 쓰듯이 request scope를 사용할 수 있다.&lt;/li&gt;
+          &lt;li&gt;Provider, 프록시의 핵심 아이디어는 진짜 객체 조회를 꼭 필요한 시점까지 지연시켜준다.&lt;/li&gt;
+          &lt;li&gt;애노테이션 설정 변경만으로 원본 객체를 프록시 객체로 대채할 수 있다.&lt;/li&gt;
+          &lt;li&gt;DI 컨테이너와 다형성&lt;/li&gt;
+          &lt;li&gt;웹 스코프가 아니어도 사용할 수 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;주의점
+        &lt;ul&gt;
+          &lt;li&gt;싱글톤처럼 사용하는 것 같지만 다르게 동작하기 때문에 주의&lt;/li&gt;
+          &lt;li&gt;scope를 꼭 필요한 경우에만 사용해야한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+
+      
+        <summary type="html">Bean Scope 빈이 존재할 수 있는 범위 스프링은 다양한 스코프를 지원 싱글톤 : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위 빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환 예제 ```java @Test void singletonTest() { AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SingletonBean.class);</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">스프링 빈 생명주기</title>
+      
+      
+      <link href="/2021/04/10/Spring-bean-lifecycle/" rel="alternate" type="text/html" title="스프링 빈 생명주기" />
+      
+      <published>2021-04-10T19:22:21+09:00</published>
+      <updated>2021-04-10T19:22:21+09:00</updated>
+      <id>/2021/04/10/Spring%20bean%20lifecycle</id>
+      <content type="html" xml:base="/2021/04/10/Spring-bean-lifecycle/">&lt;h2 id=&quot;bean-생명주기-콜백&quot;&gt;Bean 생명주기 콜백&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;객체생성 -&amp;gt; 의존관계주입
+    &lt;ul&gt;
+      &lt;li&gt;스프링 빈은 객체를 생성하고, 의존관계 주입이 다 끝난 다음에 필요한 데이터를 사용할 수 있는 준비가 완료된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스프링 컨테이너 생성 -&amp;gt; 빈 생성 -&amp;gt; 의존관계 주입 -&amp;gt; 초기화 콜백 -&amp;gt; 사용 -&amp;gt; 소멸전 콜백 -&amp;gt; 스프링 종료&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;빈-생명주기-콜백-3가지&quot;&gt;빈 생명주기 콜백 3가지&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;인터페이스
+    &lt;ul&gt;
+      &lt;li&gt;InitializingBean, DisposableBean
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InitializingBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DisposableBean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; 
+   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;afterPropertiesSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; 
+   &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;disConnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;단점 : 스프링 인터페이스에 의존하여 초기화 소멸 메서드 이름 변경할 수 없다. 코드를 고칠 수 없는 외부 라이브러리 적용 불가 (현재 거의 사용되지 않음)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;설정 정보 초기화 메서드, 종료메서드
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initMethod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;destroyMethod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;close&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;메서드 이름을 자유롭게 줄 수 있다.&lt;/li&gt;
+      &lt;li&gt;스프링 코드에 의존하지 않는다.&lt;/li&gt;
+      &lt;li&gt;외부라이브러리에 적용가능하다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@PostConstruct, @PreDestroy 애노테이션
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@PostConstruct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@PreDestory&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;스프링에서 권장하는 방법&lt;/li&gt;
+      &lt;li&gt;javax.annotation.PostConstruct -&amp;gt; 스프링 종속기술이 아니라 자바표준&lt;/li&gt;
+      &lt;li&gt;컴포넌스 스캔과 잘어울린다.&lt;/li&gt;
+      &lt;li&gt;외부 라이브러리를 초기화 종료 못한다 -&amp;gt;@Bean 기능사용(위)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;@PostConstruct, @PreDestory 애노테이션을 사용하자&lt;/li&gt;
+  &lt;li&gt;코드를 고칠 수 없는 외부 라이브러리를 초기화, 종료해야 하면 @Bean 의 initMethod , destroyMethod 를 사용하자.&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+
+      
+        <summary type="html">Bean 생명주기 콜백 객체생성 -&amp;gt; 의존관계주입 스프링 빈은 객체를 생성하고, 의존관계 주입이 다 끝난 다음에 필요한 데이터를 사용할 수 있는 준비가 완료된다. 스프링 컨테이너 생성 -&amp;gt; 빈 생성 -&amp;gt; 의존관계 주입 -&amp;gt; 초기화 콜백 -&amp;gt; 사용 -&amp;gt; 소멸전 콜백 -&amp;gt; 스프링 종료</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Spring bean이 필요한 경우</title>
+      
+      
+      <link href="/2021/04/09/Spring-bean/" rel="alternate" type="text/html" title="Spring bean이 필요한 경우" />
+      
+      <published>2021-04-09T19:22:21+09:00</published>
+      <updated>2021-04-09T19:22:21+09:00</updated>
+      <id>/2021/04/09/Spring%20bean</id>
+      <content type="html" xml:base="/2021/04/09/Spring-bean/">&lt;h1 id=&quot;bean이-모두-필요한-경우&quot;&gt;Bean이 모두 필요한 경우&lt;/h1&gt;
+
+&lt;h2 id=&quot;빈을-list-map에-담기&quot;&gt;빈을 List, Map에 담기&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findAllBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;ApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AutoAppConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+
+        &lt;span class=&quot;nc&quot;&gt;DiscountService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;userA&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Grade&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VIP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPrice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;fixDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;discountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isInstanceOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;discountPrice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;DiscountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;policyMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;policyList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;policyMap = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;policyList = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;policyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;discountCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DiscountService는 Map으로 모든 DiscountPolicy를 주입받는다.&lt;/li&gt;
+  &lt;li&gt;DiscountPolicy는 현재 인터페이스&lt;/li&gt;
+  &lt;li&gt;ixDiscountPolicy , rateDiscountPolicy가 구현 클래스이며, bean에 두 개가 주입된다.&lt;/li&gt;
+  &lt;li&gt;map의 키에 bean 이름을 너헝주고, 그 값을 DiscountPolicy 타입으로 조회한 모든 스프링 bean을 담아준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;조회한-빈이-모두-필요할-때-listmap을-사용하여-전략패턴을-사용하여-할-수-있는-장점이-있다&quot;&gt;조회한 빈이 모두 필요할 때, List,Map을 사용하여 전략패턴을 사용하여 할 수 있는 장점이 있다.&lt;/h3&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Bean : @Bean은 수동으로 스프링 컨테이너에 등록할 스프링 빈을 직접 등록&lt;/li&gt;
+  &lt;li&gt;Component: @Component는 자동으로 스프링 컨테이너에 스프링 빈을 등록&lt;/li&gt;
+  &lt;li&gt;자동으로 빈 등록해주는 것을 기본으로 사용&lt;/li&gt;
+  &lt;li&gt;직접 등록하는 기술지원 객체는 수동으로 등록(외부 라이브러리)&lt;/li&gt;
+  &lt;li&gt;다형성을 활용하는 비즈니스 로직은 수동 등록을 고민&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+
+      
+        <summary type="html">Bean이 모두 필요한 경우</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">autoWired</title>
+      
+      
+      <link href="/2021/04/08/Spring-autowired/" rel="alternate" type="text/html" title="autoWired" />
+      
+      <published>2021-04-08T19:22:21+09:00</published>
+      <updated>2021-04-08T19:22:21+09:00</updated>
+      <id>/2021/04/08/Spring%20autowired</id>
+      <content type="html" xml:base="/2021/04/08/Spring-autowired/">&lt;h2 id=&quot;autowired&quot;&gt;autowired&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;타입매칭을 시도하고, 타입 매칭 결과가 2개 이상일 때 필드명으로 빈 이름 매칭&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;qualifier&quot;&gt;Qualifier&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Qualifier는 @Qualifier 찾는 용도로만 쓰는게 좋음&lt;/li&gt;
+  &lt;li&gt;Qualifier 끼리 매칭&lt;/li&gt;
+  &lt;li&gt;빈이름 매칭&lt;/li&gt;
+  &lt;li&gt;안되면 NoSuchBeanDefinitionException 발생&lt;/li&gt;
+  &lt;li&gt;예제
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mainDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mainDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;primary&quot;&gt;Primary&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;우선순위를 정하는 방법, @Autowired 시 여러번 매칭되면 @Primary가 우선권을 가진다&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+
+      
+        <summary type="html">autowired 타입매칭을 시도하고, 타입 매칭 결과가 2개 이상일 때 필드명으로 빈 이름 매칭</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Injection 종류</title>
+      
+      
+      <link href="/2021/04/05/Spring-Injection/" rel="alternate" type="text/html" title="Injection 종류" />
+      
+      <published>2021-04-05T19:22:21+09:00</published>
+      <updated>2021-04-05T19:22:21+09:00</updated>
+      <id>/2021/04/05/Spring%20Injection</id>
+      <content type="html" xml:base="/2021/04/05/Spring-Injection/">&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dependency injection&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;생성자-주입&quot;&gt;생성자 주입&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;생성자 호출시점에 딱 1번만 호출되는것이 보장 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;불변, 필수&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;외부에서 객체를 변경할 수 있는 방법이 없다.&lt;/li&gt;
+  &lt;li&gt;생성자가 한 개 있으면 autowired 생략가능.&lt;/li&gt;
+  &lt;li&gt;빈을 등록하면서 자동 주입이 일어남.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;setter-주입&quot;&gt;setter 주입&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;선택, 변경&lt;/code&gt; 가능성이 있는 의존관계에 사용&lt;/li&gt;
+  &lt;li&gt;@Autowired의 기본동작은 주입할 대상이 없으면 오류발생&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;필드-주입&quot;&gt;필드 주입&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;필드에 바로 주입하는 방식&lt;/li&gt;
+  &lt;li&gt;코드가 간결&lt;/li&gt;
+  &lt;li&gt;외부에서 변경이 불가능하여 테스트하기 힘듬(치명적)
+    &lt;ul&gt;
+      &lt;li&gt;원하는 mock 데이터로 주입하여 테스트를 하고싶은대 할 방법이 없음.(결국 setter 사용)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;DI프레임워크가 없으면 불가능.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;일반-메서드-주입&quot;&gt;일반 메서드 주입&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;일반 메서드를 통해 주입받을 수 있음.&lt;/li&gt;
+  &lt;li&gt;한번에 여러 필드를 주입받을 수 있음.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;생성자-주입-선택하는-이유&quot;&gt;생성자 주입 선택하는 이유&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;b&gt;final&lt;/b&gt; 키워드를 넣을 수 있다.&lt;/li&gt;
+  &lt;li&gt;Immutable
+    &lt;ul&gt;
+      &lt;li&gt;의존관계주입이 일어나면 어플리케이션 종료시점까지 의존관계를 변경할 일이 없어야한다(불변)&lt;/li&gt;
+      &lt;li&gt;실수로 변경할 수도있고, 변경하면 안되는 메서드를 열어두는 것은 객체지향에 좋지 않다.&lt;/li&gt;
+      &lt;li&gt;생성자 주입은 생성할 때 1번만 호출되므로 이후에 호출되는 일이 없다. (불변)&lt;/li&gt;
+      &lt;li&gt;생성자에서 실수로 값이 설정되지 않는 오류를 컴파일 시점에서 막아준다.&lt;/li&gt;
+      &lt;li&gt;생성자 주입을 제외한 주입들은 모두 생성자 이후에 호출되므로, 필드에 &lt;b&gt;final&lt;/b&gt; 사용할 수 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프레임워크에 의존하지 않고 순수한 자바 언어의 특징을 잘 살릴 수 있는 방법&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+
+      
+        <summary type="html">Dependency injection 생성자 주입 생성자 호출시점에 딱 1번만 호출되는것이 보장 불변, 필수 외부에서 객체를 변경할 수 있는 방법이 없다. 생성자가 한 개 있으면 autowired 생략가능. 빈을 등록하면서 자동 주입이 일어남.</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">IoC, DI, Container</title>
+      
+      
+      <link href="/2021/04/04/Spring-basic/" rel="alternate" type="text/html" title="IoC, DI, Container" />
+      
+      <published>2021-04-04T19:22:21+09:00</published>
+      <updated>2021-04-04T19:22:21+09:00</updated>
+      <id>/2021/04/04/Spring%20basic</id>
+      <content type="html" xml:base="/2021/04/04/Spring-basic/">&lt;h1 id=&quot;제어의-역전&quot;&gt;제어의 역전&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Inversion of Control&lt;/code&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;기존의 프로그램은 클라이언트 구현 객체가 스스로 필요한 서버 구현 객체를 생성, 연결, 실행하여 스스로 프로그램의 제어흐름을 가지고 있음&lt;/li&gt;
+    &lt;li&gt;컨테이너가 등장함으로써 구현객체는 자신의 로직을 실행만 시킴&lt;/li&gt;
+    &lt;li&gt;프로그램에 대한 제어권은 컨테이너가 가지고 있다.&lt;/li&gt;
+    &lt;li&gt;ex)
+```java
+class AppConfig {&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public memberServive () {
+    return new MemberServiceImpl(memberRepository);
+}
+
+public memberRepository() {
+    return new OracleDbRepository(); // 원하는 디비를 연결하여 가져올 수 있다.
+} }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;public class MemberServiceImpl implements MemberService {&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private final MemberRepository memberRepository;
+
+// 어떤 repository를 받는지 신경안쓰고 일단 구현한다. (핵심이라고 생각)
+public MemberServiceImpl(MemberRepository memberRepository) {
+    this.memberRepository = memberRepository;
+} } ``` - 프레임워크 vs 라이브러리   - 프레임워크 : 내가 작성한 코드를 제어하고, 대신 실행하면 프레임워크   - 라이브러리 : 내가 작성한 코드가 직접 제어의 흐름을 담당하면 라이브러리
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;의존관계-주입&quot;&gt;의존관계 주입&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Dependency Injection&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;정적인 클래스 의존관계&lt;/li&gt;
+    &lt;li&gt;실행시점에 결정되는 동적인 객체 의존관계
+      &lt;ul&gt;
+        &lt;li&gt;애플리케이션 _ 실행시점_ 에 외부에서 실제 구현 객체를 생성하고 클라이언트에 전달하여 클라이언트와 서버의 실제 의존관계가 연결되는 것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;의존관계주입&lt;/code&gt;&lt;/li&gt;
+        &lt;li&gt;객체인스턴스를 생성하고, 그 참조값을 전달하여 연결&lt;/li&gt;
+        &lt;li&gt;클라이언트 코드를 변경하지 않고, 클라이언트가 호출하는 대상의 타입 인스턴스를 변경할 수 있음.&lt;/li&gt;
+        &lt;li&gt;정적인 클래스를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;ioc컨테이너-di-컨테이너&quot;&gt;IoC컨테이너, DI 컨테이너&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;객체를 생성하고 관리해주는 컨테이너 위에 AppConfig.class 역할&lt;/li&gt;
+  &lt;li&gt;IoC컨테이너 또는 DI 컨테이너&lt;/li&gt;
+  &lt;li&gt;의존관계 주입에 초점을 맞추어 DI컨테이너라고 불린다.&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+
+      
+        <summary type="html">제어의 역전</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Immutable</title>
+      
+      
+      <link href="/2021/04/02/JAVA-immutable/" rel="alternate" type="text/html" title="Immutable" />
+      
+      <published>2021-04-02T19:22:21+09:00</published>
+      <updated>2021-04-02T19:22:21+09:00</updated>
+      <id>/2021/04/02/JAVA%20immutable</id>
+      <content type="html" xml:base="/2021/04/02/JAVA-immutable/">&lt;h1 id=&quot;immutable-object&quot;&gt;Immutable Object&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Immutable&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;객체지향 프로그래밍에 있어 불변객체는 생성 후 그 상태를 바꿀 수 없는 객체를 말한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Single Responsibility Principle&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;객체는 단 하나의 책임을 가지도록 설계해야한다.&lt;/li&gt;
+  &lt;li&gt;(하나의 객체가 여러 기능을 수행하게 된다면 여러 객체와 의존 관계가 맺어지기 때문에 많은 객체들과 관계가 형성되는 것은 그만큼 변경의 가능성도 높아진다고 생각된다.)&lt;/li&gt;
+  &lt;li&gt;변경이 있을 때 최소화 하기 위해 책임을 최소한으로 가져야 한다.
+    &lt;blockquote&gt;
+      &lt;p&gt;설계시 메서드나 인스턴스 필드의 갯수와 규모를 최대한 적게 명시할 수 있도록 작성해야한다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;불변이-중유한-이유&quot;&gt;불변이 중유한 이유&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;외부에서 변경이 가능할 경우 상태 변화를 추적하기 어려워진다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;일급 컬렉션&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;원시값을 클래스로 감싸는 작업&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;연관된 조작을 해당 클래스 내부에서만 다룰 수 있다.&lt;/li&gt;
+      &lt;li&gt;리턴된 Collection이 외부에서 변경이 가능할 경우 만드는 의미가 반감된다.&lt;/li&gt;
+      &lt;li&gt;외부에서 Collection을 수정하는 행위는 응집도가 떨어지므로 &lt;em&gt;지양&lt;/em&gt; 해야한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;불변-타입&quot;&gt;불변 타입&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;String, Boolean, Integer, Float, Long&lt;/li&gt;
+  &lt;li&gt;변경불가라는 것은 heap 영역에서의 변경불가&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="java" />
+      
+
+      
+
+      
+        <summary type="html">Immutable Object</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">JAVA final</title>
+      
+      
+      <link href="/2021/04/01/JAVA-final/" rel="alternate" type="text/html" title="JAVA final" />
+      
+      <published>2021-04-01T19:22:21+09:00</published>
+      <updated>2021-04-01T19:22:21+09:00</updated>
+      <id>/2021/04/01/JAVA%20final</id>
+      <content type="html" xml:base="/2021/04/01/JAVA-final/">&lt;h1 id=&quot;final&quot;&gt;final&lt;/h1&gt;
+
+&lt;h2 id=&quot;final에-대해-정리하게-된-이유&quot;&gt;final에 대해 정리하게 된 이유&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 공부를 하던 도중 김영한(스프링 강의)님께서 변수들을 final로 해놓은 것들을 보았고 왜 다 final을 붙일까 생각이 들었다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;the final keyword is used in several contexts to define an entity that can only be assigned once.&lt;/p&gt;
+
+  &lt;p&gt;Immutable object - 객체를 공유하여 스레드 세이프하다.&lt;/p&gt;
+
+  &lt;p&gt;Read-Only&lt;/p&gt;
+
+  &lt;p&gt;Side-effect가 적다.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;클래스&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;상속이 불가능하다.&lt;/li&gt;
+  &lt;li&gt;생성자가 초기화 되어있는 경우 초기화 불가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;메서드&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;오버라이드를 할 수 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;변수&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;값을 재할당 할 수 없다.&lt;/li&gt;
+  &lt;li&gt;기본 생성자를 사용할 수 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final class&lt;/code&gt; 로 상속이 불가능하도록 생성하고 생성 시 전달받은 인자를 수정할 수 없게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Immutable&lt;/code&gt; 하게 만들어준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;가독성이 좋다&lt;/code&gt; &amp;gt; 수식을 이해는대 좋다. (아직 잘 모르겠다.)&lt;/p&gt;
+
+&lt;h3 id=&quot;엘레강트-오브젝트-책&quot;&gt;엘레강트 오브젝트 책&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;책에서는 모드 클래스와 변수를 final로 지정해서 해야한다.&lt;/li&gt;
+  &lt;li&gt;상속이 객체들의 관계를 복잡하게 만들기 때문에 상속이 좋지않다 -&amp;gt; final로 제한한다면 가능성을 없앨수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;참조 &lt;a href=&quot;https://makemethink.tistory.com/184&quot;&gt;Link&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+
+      
+        <category term="java" />
+      
+
+      
+
+      
+        <summary type="html">final</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+</feed>
