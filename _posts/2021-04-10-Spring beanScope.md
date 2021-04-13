@@ -9,7 +9,6 @@ categories: spring
  - 스프링은 다양한 스코프를 지원
  - ```싱글톤``` : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위
     - 빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환
-    - 예제
     ```java
     @Test
     void singletonTest() {
@@ -22,8 +21,6 @@ categories: spring
         assertThat(bean1).isSameAs(bean2);
         ac.close();
     }
-
-
 
     @Scope("singleton")
     static class SingletonBean {
@@ -38,6 +35,7 @@ categories: spring
       }
     }
     ```
+    
     ```
     결과 
     Singleton init
@@ -75,6 +73,7 @@ categories: spring
         }
     }
     ```
+
     ```
     실행결과
     singleton init

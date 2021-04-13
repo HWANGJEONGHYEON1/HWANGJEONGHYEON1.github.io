@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "git 명령어 요약"
-date:   2020-04-12 01:00
+date:   2021-04-12 01:00
 categories: git
 tags: [git, command]
 ---
@@ -82,7 +82,7 @@ $ git push origin :iss53
 
 <br>
 
-### 커밋
+### 커밋 & add
 * `git add *` + `git commit -m update` 한번에 하기  
 (단, 신규 파일들이 스테이징 영역에 추가되지는 않는다)
 ```
@@ -95,6 +95,11 @@ git reset HEAD^
 * 마지막 2개의 commit을 취소
 ```
 git reset HEAD~2
+```
+* git add 취소
+```
+git reset // 전체파일
+git reset head 파일 // 특정 파일 취소
 ```
 
 
