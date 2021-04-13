@@ -43,6 +43,7 @@ categories: spring
     bean2 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
     Singleton destroy
     ```
+    - 
  - ```프로토타입``` : 빈의 생성과 의존관계 주입, 초기화까지만 관여, 매우 짧은 범위
     - 스프링 컨테이너에 조회하면 항상 새로운 인스터스를 생성하여 반환
     ```java
