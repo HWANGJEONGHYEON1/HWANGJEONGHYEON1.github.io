@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<div class="home">
+  {% capture posts_size %}{{site.posts|size}}{% endcapture %}
+  - All posts: {{ posts_size }}
+  <br>
+
+  <br>
+  <h1 class="page-heading">Archives by month</h1>
+  <br>
+
+  {{ content }}
+
+  {% capture site_lang %}{{ site.lang | default: "en" }}{% endcapture %}
+
+  <ul class="post-archives">
+    {% assign prev_month = "zero" %}
+    {% for post in site.posts %}
+      {% capture post_lang %}{{ post.lang | default: site_lang }}{% endcapture %}
+      {% capture lang %}{% if post_lang != site_lang %}{{ post_lang }}{% endif %}{% endcapture %}
+
+
+      {% assign this_month = post.date | date: "%b" %}
+      {% if this_month != prev_month %}
+        {% if prev_month != "zero" %}
+          <li>&nbsp;</li>
+        {% endif %}
+        {% assign prev_month = this_month %}
+        <li><h2>* {{post.date | date: "%Y년 %m월"}}</h2></li>
+      {% endif %}
+
+      <li style="margin-left: 20px;">
+        <span class="post-meta">
+          {{ post.date | date: "%b %-d, %Y" }}
+          {% if post.categories != empty or post.tags != empty %}
+            {% include category_links.html categories=post.categories tags=post.tags %}
+          {% endif %}
+          {% if post.external-url %}
+            • <a href="{{ post.url | relative_url }}">Permalink</a>
+          {% endif %}
+        </span>
+
+        <h2>
+          {% if post.external-url %}
+            <a class="post-link" href="{{ post.external-url }}">{{ post.title | escape }} &rarr;</a>
+          {% else %}
+            <a class="post-link" href="{{ post.url | relative_url }}"{% if lang != empty %} lang="{{ lang }}"{% endif %}>{{ post.title | escape }}</a>
+          {% endif %}
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

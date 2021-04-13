@@ -1,5 +1,6 @@
-
-
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
 @charset "utf-8";
 
 // Our variables
@@ -10,15 +11,15 @@ $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
-$spacing-unit:     30px;
+$spacing-unit:     20px;    // update margin between title, 2018-09-04
 
 $text-color:       #111;
 $background-color: #fdfdfd;
 $brand-color:      #2568ba;
 
-$grey-color:       #757575;
-$grey-color-light: lighten($grey-color, 45%);
-$grey-color-dark:  darken($grey-color, 20%);
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
 
 // Width of the content area
 $content-width:    800px;
@@ -46,3 +47,32 @@ $on-laptop:        800px;
 
 // Import partials from the `whiteglass` theme.
 @import "whiteglass";
+
+
+
+
+/* logo font */
+// @import url(//db.onlinewebfonts.com/c/13b003e481c54fdf324c9ed0d312d49c?family=Colopocle);
+// @font-face {font-family: "logofont";
+//     src: url("//db.onlinewebfonts.com/t/13b003e481c54fdf324c9ed0d312d49c.eot");
+//     src: url("//db.onlinewebfonts.com/t/13b003e481c54fdf324c9ed0d312d49c.eot?#iefix") format("embedded-opentype"),
+//     url("//db.onlinewebfonts.com/t/13b003e481c54fdf324c9ed0d312d49c.woff2") format("woff2"),
+//     url("//db.onlinewebfonts.com/t/13b003e481c54fdf324c9ed0d312d49c.woff") format("woff"),
+//     url("//db.onlinewebfonts.com/t/13b003e481c54fdf324c9ed0d312d49c.ttf") format("truetype"),
+//     url("//db.onlinewebfonts.com/t/13b003e481c54fdf324c9ed0d312d49c.svg#Colopocle") format("svg");
+// }
+
+
+  /**
+  * https://min9nim.github.io/2018/11/logo-webfont/
+  * 위 포스트 작성하고 기분좋아서 블로그에도 웹폰트 적용해 봤는데 더 이상해서 그냥 주석처리함
+  * 
+  */
+
+// .site-title {
+  //font-family: "logofont";
+// }
+
+.post-title {
+  font-size: 30px
+}
