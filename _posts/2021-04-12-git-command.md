@@ -10,9 +10,9 @@ tags: [git, command]
 ```
 $ git branch iss53
 ```
-* 브랜치 이동
+* 브랜치 생성 및 이동s
 ```
-$ git checkout iss53
+$ git checkout -b iss53
 ```
 * 로컬 브랜치 목록 보기
 ```console
