@@ -26,6 +26,7 @@ tags: [java]
         - 스태틱을 남발하게 된다면 static 당 메모리를 차지해 memoryOverFlow 발생
 
 * static block
+
 ```
     static {
         ...
