@@ -36,9 +36,14 @@ tags: [security, jwt]
 - `해결 방법`
     - `순환참조의 고리 끊기`
     - @Lazy 사용
-        
+        - 권장하지않음
+            - 프로그램 문제 발견을 지연시킬수 있음.
+            - 잘못 구성된 Bean이 느리게 초기화 되면 시작 중 실패하지 않음
+    - 제일 좋은 방법은 `재설계`
+
 
 ### Ref.
 * <https://smallgiant.tistory.com/101>
+* <https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-lazy-initialization>
 
         
