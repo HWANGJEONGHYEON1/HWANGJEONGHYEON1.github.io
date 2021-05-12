@@ -41,6 +41,12 @@ tags: [security, jwt]
             - 잘못 구성된 Bean이 느리게 초기화 되면 시작 중 실패하지 않음
     - 제일 좋은 방법은 `재설계`
 
+* CustomUserDetails 언제 실행되는지 .
+- authenticationToken을 이용해서 authenticate 메소드가 실행될 때 loadUserByUsername이 실행된다.
+```
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+```
+
 
 ### Ref.
 * <https://smallgiant.tistory.com/101>
