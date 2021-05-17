@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spring-Servlet-MVC"
+title:  "Spring-FrontController"
 date:   2021-05-16 14:15
 categories: spring,http
 tags: [spring]
@@ -510,4 +510,7 @@ public class FrontControllerServletV5 extends HttpServlet {
 * v4 : 구현 입장에서 ModelView를 직접 생성해서 바환하지 않도록 편리한 인터페이스 제공
 * 어댑터 도입, 프레임워크를 확장성 있고 유연하게 설계
 
+
+### Ref.
+* <https://https://www.inflearn.com/>
 
