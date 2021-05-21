@@ -9,7 +9,8 @@ categories: spring
  - 스프링은 다양한 스코프를 지원
  - ```싱글톤``` : 디폴트, 스프링 컨테이너 시작과 종료까지 유지되는 가장 넓은 범위
     - 빈을 조회하면 항상 같은 인스턴스의 스프링 Bean을 반환
-    ```java
+
+```java
     @Test
     void singletonTest() {
         AnnotationConfigApplicationContext ac  = new AnnotationConfigApplicationContext(SingletonBean.class);
@@ -34,19 +35,19 @@ categories: spring
           System.out.println("Singleton destroy");
       }
     }
-    ```
+```
     
-    ```
+```
     결과 
     Singleton init
     bean1 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
     bean2 = hello.core.scope.SingletonTest$SingletonBean@3b0fe47a
     Singleton destroy
-    ```
+```
   
  - ```프로토타입``` : 빈의 생성과 의존관계 주입, 초기화까지만 관여, 매우 짧은 범위
     - 스프링 컨테이너에 조회하면 항상 새로운 인스터스를 생성하여 반환
-    ```java
+```java
     public class ProtoTypeTest {
 
         @Test
@@ -73,15 +74,16 @@ categories: spring
             }
         }
     }
-    ```
+```
 
-    ```
+```
     실행결과
     singleton init
     singleton init
     bean1 = hello.core.scope.ProtoTypeTest$PrototypeBean@3b0fe47a
     bean2 = hello.core.scope.ProtoTypeTest$PrototypeBean@202b0582
-    ```
+```
+
     - 빈 생성이 새로 만들어지고 @PreDestroy가 호출되지 않는다.
     - 직접 bean2.destroy() 호출해줘야한다.
  - ```웹 관련 스코프```
