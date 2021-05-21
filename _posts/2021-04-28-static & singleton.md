@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "static & singleton"
+title:  "static"
 date:   2021-04-29 10:33
 categories: java
 tags: [java]
@@ -32,14 +32,16 @@ tags: [java]
         ...
     }
 ```
+
 - 클래스가 로드될 때 자동으로 실행
 - 클래스내에 여러개 선언되어도 상관없다.
 - 인스턴스 필드, 메서드는 사용불가 (객체로 아직 생성되지 않음)
 
-## 스태틱은 되도록 사용하지 않도록 권장
+#### 스태틱은 되도록 사용하지 않도록 권장
  * 싱글톤 대체
-    - 클래스가 최초 한번만 메모리에 로딩하고, 그 메모리에 객체를 생성하여 사용하는 디자인 페턴
- ```java
+    - 클래스가 최초 한번만 메모리에 로딩하고, 그 메모리에 객체를 생성하여 사용하는 디자인 패턴
+
+```java
     public class Singleton {
         public static Singleton singleton = new Test();
 

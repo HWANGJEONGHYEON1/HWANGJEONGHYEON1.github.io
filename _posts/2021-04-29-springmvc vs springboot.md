@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "static & singleton"
+title:  "SpringMVC vs SpringBoot"
 date:   2021-04-29 10:33
 categories: spring
 tags: [java, spring]
