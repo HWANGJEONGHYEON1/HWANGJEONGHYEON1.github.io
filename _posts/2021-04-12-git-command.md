@@ -5,7 +5,22 @@ date:   2021-04-12 01:00
 categories: git
 tags: [git, command]
 ---
-### 브랜치
+### 명령어
+
+* 브랜치 임시저장
+  - A 브랜치 기능완료 PR 요청
+  - B 브랜치 작업
+  - A 브랜치 버그발생
+  - B 브랜치 작업 도중 A 브랜치 작업 시 변경 내역이 있어 브랜치 변경 불가능
+  - git stash
+  - git stash list
+  - git stash apply stashId
+  
+```
+❯ git stash
+```
+
+
 * 브랜치 생성
 ```
 $ git branch iss53
@@ -205,7 +220,7 @@ $ git config --global user.email johndoe@example.com
 
 <br>
 
-### 원격저장소
+#### 원격저장소
 * 원격저장소 확인
 ```
 $ git remote -v
