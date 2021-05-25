@@ -39,3 +39,7 @@ public class CommonExceptionHandler {
 }
 
 ```
+### Ref.
+* <https://bamdule.tistory.com/92>
+* <https://supawer0728.github.io/2019/04/04/spring-error-handling/>
+
