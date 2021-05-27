@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Interview"
+title:  "질문 10가지"
 date:   2021-05-20 14:15
-categories: spring, template, thymeleaf
+categories: spring
 tags: [spring, interview]
 ---
 
@@ -28,6 +28,11 @@ tags: [spring, interview]
 - 자바에서 다양한 타입의 객체들을 다루는 메서드나 컬렉션 클래스에 컴파일 시 타입체크를 해주고, 중복 되는 코드를 제거해줄 수 있습니다.
 - 제네릭을 사용하면서 사용 가능한 타입을 검증하고 사용 가능하지 않은 타입은 프로그램이 실행되기 전 컴파일 시점에 오류가 발생해 개발자에게 편리한 기능이라고 생각합니다.
 
+#### 인터페이스란 무엇인가요?
+- 클래스들이 구현해야 하는 동작을 지정하는데 사용하는 추상 자료형입니다.
+- 인터페이스를 사용할 때 상속을 해야합니다.
+- 인터페이스를 사용함으로써, 확장성이 좋은 코드를 작성할 수 있고, 결합도가 강하지 않은 프로그래밍을 할 수 있습니다.
+
 #### Singleton이 무엇인가요?
 - 객체의 인스턴스가 오직 하나 1개만 생성하는 것입니다.
 - 인스턴스를 오직 하나만 존재한다면, 메모리 측면에서 낭비를 줄일 수 있고, 전역으로 사용되는 인스턴스이기 때문에 데이터 공유가 쉽습니다.
@@ -52,6 +57,19 @@ public class Singleton {
 ```
 
 #### Spring Security 동작원리를 설명해주세요
+- 먼저 스프링 시큐리티는 스프링기반의 어플리케이션 보안을 담당하는 스프링 하위 프레임워크입니다.
+- 인증과 권한에 대한 부분을 필터 흐름에 따라 처리하고 있습니다.
+- 로그인 요청이 오면 AuthenticationFilter가 HttpServletRequest의 아이디와 비밀번호를 가로챕니다.
+- AuthenticationManager에게 UserPasswordAuthenticationToken을 위임합니다.
+- 실제 인증을 할 AuthenticationProvider에게 Authentication(UserPasswordAuthenticationToken) 객체를 다시 전달합니다.
+- DB에서 사용자 인증 정보를 가져올 UserDetailsService 객체에게 사용자 아이디와 암호화 된 비밀번호를 넘겨주고, UserDetails 객체를 전달받습니다.
+- AuthenticationProvider는 UserDetails 객체를 전달 받은 후 사용자 입력정보와 UserDetails를 가지고 인증을 시도합니다.
+- 인증이 완료되면 SecurityContextHolder에 담은 후 AuthenticationSuccessHandle을 실행합니다.
+- 시큐리티를 쓰면서 요청별 시큐리티에 대한 정보를 가질 수 있어 DB에 저장하는 것보다 더 편리하다고 생각이 들었습니다.
 
 
-#### 
+#### 다형성이란 무엇인가요?
+- 하나의 타입에 여러 객체를 대입할 수 있는 것입니다.
+- 다형성을 활용하면 기능을 확장하거나, 객체를 변경해야할 때 타입 변경없이 객체 주입으로 수정을 할 수 있습니다. 상속을 같이 활용한다면 중복되는 코드를 제거할 수 있으므로 객체지향 설계와 가까워 질 수 있다고 생각합니다.
+- 다형성 중 오버라이딩을 사용할 경우에 if-else 분기가 늘어나는 것을 제거 할 수 있고, 코드를 수정하는것이 아닌 추가하는 것으로 기존 코드를 건드리지 않을 수 있습니다.
+- 다형성을 잘 활용한다면 코드의 중복을 줄이면서, 변경과 확장에 유연한 객체지향 코드를 작성하는데 유용합니다.
