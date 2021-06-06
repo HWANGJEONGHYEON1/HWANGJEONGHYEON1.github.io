@@ -7,7 +7,7 @@ tags: [spring, http]
 ---
 ### Servlet
 
-* 김영한 선생님 강의에서 배운것 - 2
+* 배운 내용
 
 > HttpServletRequest
 * 서블릿은 HTTP 요청 메시지를 편리하게 사용할 수 있도록 해줌
