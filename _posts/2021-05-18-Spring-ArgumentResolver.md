@@ -13,6 +13,8 @@ tags: [spring, resolver]
 
 - 스프링에서 제공하는 ArgumentResolver를 사용하면 Controller에 파라미터에 대한 공통기능을 제공할 수 있다.
 
+- 컨트롤러로 가기 전에 view에서 넘어온 데이터(정확히는 HttpRequest를 포함해서 다양한 데이터)를 가공해서, 컨트롤러로 전달하기 위함
+
 - HandlerMethodArgumentResolver 사용
 
 
@@ -89,6 +91,7 @@ public class WebConfig implements WebMvcConfigurer {
 ```
 
 - 로그인 후 정보가져오기
+
 ```java
 @Controller
 @RequiredArgsConstructor
