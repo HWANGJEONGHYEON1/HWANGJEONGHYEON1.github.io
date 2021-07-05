@@ -77,6 +77,7 @@ tags: [security, jwt]
         }
     }
 ```
+
 * AuthenticationProvider
     - 실제 인증에 대한 부분을 처리, 인증 전의 Authentication 객체를 받아 인증이 완료된 객체를 반환하는 역할
 
