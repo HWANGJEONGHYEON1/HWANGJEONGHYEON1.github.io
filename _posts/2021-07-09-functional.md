@@ -189,3 +189,42 @@ class Student {
 
 ### Operator
 - Function과 동일하게 매게 변수와 리턴 값이 있는 applyXXX() 메소드를 가지고 있다. 매개값을 리턴값으로 매핑하는 역할보다 매개값을 이용해서 연산ㅇ르 수행한 후 동일한 타입으로 리턴 값 제공
+
+```java
+import java.util.function.IntBinaryOperator;
+
+public class OperatorExample {
+
+    private static int[] arg = {15, 20, 10 ,50};
+
+    public static int maxOrMin(IntBinaryOperator operator) {
+        int result = arg[0];
+
+        for (int age : arg) {
+            result = operator.applyAsInt(result, age);
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int max = maxOrMin((a, b) -> {
+            if (a>=b) {
+                return a;
+            }
+            return b;
+        });
+
+        int min = maxOrMin((a, b) -> {
+            if (a <= b) {
+                return a;
+            }
+            return b;
+        });
+
+        System.out.println("최대값 : " + max);
+        System.out.println("최소값 : " + min);
+    }
+}
+
+```
