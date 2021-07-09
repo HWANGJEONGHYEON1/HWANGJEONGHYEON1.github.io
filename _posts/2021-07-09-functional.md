@@ -188,7 +188,7 @@ class Student {
 ```
 
 ### Operator
-- Function과 동일하게 매게 변수와 리턴 값이 있는 applyXXX() 메소드를 가지고 있다. 매개값을 리턴값으로 매핑하는 역할보다 매개값을 이용해서 연산ㅇ르 수행한 후 동일한 타입으로 리턴 값 제공
+- Function과 동일하게 매게 변수와 리턴 값이 있는 applyXXX() 메소드를 가지고 있다. 매개값을 리턴값으로 매핑하는 역할보다 매개값을 이용해서 연산 수행한 후 동일한 타입으로 리턴 값 제공
 
 ```java
 import java.util.function.IntBinaryOperator;
