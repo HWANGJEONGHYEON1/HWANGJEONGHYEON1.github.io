@@ -462,5 +462,32 @@ public class Singleton {
 
 ### Functional Interface
 - Predicate
+    - 하나의 인자와 리턴 타입을 가진다. 반환타입이 boolean으로 고정
+
+```java
+    Predicate<String> p = str -> str.isEmpty();
+    boolean result = p.test("AAA");
+```
+
 - Consumer
+    - 리턴 타입이 void, 인자를 받는 메서드, 인자를 소모한다
+```java
+    Consumer<String> c = str -> System.out.println(c);
+    c.accept("hi");
+```
+
 - Function
+    - 함수를 지원해준다. 하나의 인자와 리턴타입을 가진다.
+
+```java
+    Function<String, Integer> function = str -> Integer.parseInt(str);
+    Integer result = function.apply("1");
+```
+
+- Supplier
+    - 인자를 받지 않으며 리턴타입만 존재하는 메서드. 순수함수에서 결과를 바꾸는건 오직 input 값 뿐인대, input 값이 없다는건 항상 같은 값만리턴
+
+```java
+    Supplier<String> s = () -> "Hello Supplier";
+    String result = s.get();
+```
