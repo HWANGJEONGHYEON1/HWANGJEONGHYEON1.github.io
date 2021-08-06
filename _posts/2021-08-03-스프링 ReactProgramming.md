@@ -28,7 +28,7 @@ tags: [spring. reactprogramming]
         Observable.just(100,200,300,400,500)
                 .doOnNext(data -> System.out.println(getThreadName() + " : "  + " #doOnNext() " + data))
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.computation()) // 데이터의 흐름을 처리
+                .observeOn(Schedulergs.computation()) // 데이터의 흐름을 처리
                 .filter(num -> num > 300)
                 .subscribe(num -> System.out.println(getThreadName() + " : result : " + num));
 
@@ -38,3 +38,43 @@ tags: [spring. reactprogramming]
 
 ### 마블 다이어그램
 - 리액티브 프로그래밍을 통해 발생하는 비동기적인 데이터의 흐름을 시간의 흐름에따라 시각적으로 표시한 다이어그램
+
+### 리액티브 스트림(Reactive Streams)
+- 리액티브 프로그래밍 라이브러리의 표준 사양
+- 인터페이스만 제공
+- Publisher
+    - 데이터를 생성하고 통지
+- Subscriber
+    - 통지된 데이터를 전달받아 처리
+- Subscription
+    - 전달받을 데이터의 개수를 요청하고 구독을 해지
+- Processor
+    - Publisher와 Subscriber의 기능이 모두 있음.
+
+
+### Cold Publisher , Hot Publisher
+- Cold Publisher
+    - 생산자는 소비자가 구독할 때마다 데이터를 처음부터 새로 통지한다.
+    - 데이터를 통지하는 새로운 타임라인이 생성된다.
+    - 소비자는 구독시점과 상관없이 통지된데이터를 처음부터 전달 받을 수 있다.
+- Hot Publisher
+    - 생산자는 소비자 수와 상관없이 데이터를 한번만 통지한다.
+    - 데이터를 통지하는 타임라인은 하나
+    - 소비자는 발행된 데이터를 처음부터 전달받는게 아니라 구독 시점에 통지된 데이터를 받을 수 있다.
+
+###  Flowable vs Observable 
+- Flowable
+    - Reactive Streams 인터페이스를 구현
+    - Subscriber에서 데이터를 처리
+    - 데이터 개수제어하는 `배압`기능이 있음
+    - Subscription으로 전달받은 데이터 개수를 제어할 수 있음
+    - Subscription으로 구독 해지
+- Observable
+    - Reactive Streams 인터페이스를 구현 X
+    - Observer에서 데이터 처리
+    - `배압`기능 없음
+    - 데이터 개수를 제어할 수 없음
+    - Disposable로 구독 해지
+
+### 배압이란
+    - Flowable에서 데이터를 통지하는 속도가 Subscriber에서 통지된 데이터를 전달받아 처리하는 속도보다 빠를 때 밸런스를 맞추기위해 데이터 통지량을 제어하는 기능
