@@ -125,3 +125,4 @@ Single<String> single = Single.just(DateUtil.getNowDate());
 - 데이터 생산자이지만 데이터를 통지하지않고, 완료 또는 에러를 통지
 - 데이터 통지의 역할 대신에 Completable 내에서 특정 작업을 수행한 후, 해당 처리가 끝났음을 통지하는 역할을 한다.
 - Completable의 대표적인 소비자는 CompletableObserver이다. 
+
