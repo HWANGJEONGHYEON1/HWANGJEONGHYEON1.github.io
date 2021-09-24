@@ -47,7 +47,9 @@ categories: spring
 ### 조회한 빈이 모두 필요할 때, List,Map을 사용하여 전략패턴을 사용하여 할 수 있는 장점이 있다.
 
 ### Component vs bean
-
+- bean : 외부 라이브러리를 등록하고 싶을 때 빈을 사용(클래스 레벨 사용 불가)
+- component : 개발자가 직접 컨트롤하려고 할 때 사용(클래스 레벨 사용)
+- 
 ## 정리
 - Bean : @Bean은 수동으로 스프링 컨테이너에 등록할 스프링 빈을 직접 등록
 - Component: @Component는 자동으로 스프링 컨테이너에 스프링 빈을 등록
