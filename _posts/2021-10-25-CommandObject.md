@@ -24,5 +24,11 @@ tags: [spring]
 
 
 ### 참고
+- `@ModelAttribute`는 Http 요청 파라미터(URL 쿼리 스트링, POST form)을 다룰 때 사용
+  - Http 요청 파라미터르 처리는 각각의 필드 단위로 세밀하게 적용, 그래서 특정 필드 타입에 맞지 않는 오류가 발생해도 나머지 필드는 정상처리됨
+- `@RequestBody`는 Http의 바디 데이터를 객체로 변환할 때 사용(JSON)
+  - HttpMessageConverter는 JSON 데이터를 객체로 변환하지 못하면 이후 단계 자체가 진행하지 않고 예외가 발생한다 -> 컨트롤러 호출불가
+  
+### 링크
 - https://velog.io/@gillog/Spring-Command-Obejct
 - https://webdevtechblog.com/modelattribute-%EC%99%80-%EC%BB%A4%EB%A7%A8%EB%93%9C-%EA%B0%9D%EC%B2%B4-command-object-42c14f268324
