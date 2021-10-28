@@ -88,7 +88,7 @@ public class SessionManager {
 
     public Cookie findCookie(HttpServletRequest request, String cookieName) {
         final Cookie[] cookies = request.getCookies();
-        if (cookies == null) {
+        if (cookies == null) {\
             return null;
         }
 
@@ -99,7 +99,3 @@ public class SessionManager {
     }
 }
 ```
-
-### 링크
-- https://velog.io/@gillog/Spring-Command-Obejct
-- https://webdevtechblog.com/modelattribute-%EC%99%80-%EC%BB%A4%EB%A7%A8%EB%93%9C-%EA%B0%9D%EC%B2%B4-command-object-42c14f268324
