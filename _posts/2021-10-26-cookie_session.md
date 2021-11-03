@@ -99,3 +99,39 @@ public class SessionManager {
     }
 }
 ```
+
+### HttpSession
+- 서블릿을 통해 HttpSession을 생성하면 `JSESSIONID` 쿠키를 생성하고 값은 추정불가능한 랜덤값이 된다.
+
+```java
+        // session이 있으면 세션반환, 없으면 생성
+        final HttpSession session = request.getSession();
+        // 세션에 로그인 회원 정보를 보관
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+    // 세션 정보
+    @GetMapping("/session-info")
+    public String sessionInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return "Session is not exist";
+        }
+        // 세션 데이터 출력
+        session.getAttributeNames()
+                .asIterator()
+                .forEachRemaining(name -> log.info("session Name = {}, value = {}", name, session.getAttribute(name)));
+        log.info("sessionId={}", session.getId());
+        log.info("getMaxInactiveInterval()={}", session.getMaxInactiveInterval());
+        log.info("getCreationTime()={}", new Date(session.getCreationTime()));
+        log.info("getLastAccessedTime()={}", new Date(session.getLastAccessedTime()));
+        log.info("isNew={}", session.isNew());
+        return "세션 출력";
+    }
+```
+
+- 세션 타임아웃 설정(로그인 시 얼마 후에 세션 삭제)
+  - 세션 타임아웃 시간은 해당 세션과 관련된 JSESSIONID를 전달하는 요청이 있으면 현재시간으로 다시 초기화(`getLastAccessedTime`)
+  - getLastAccessedTime -> 이후로 시간이 지나면 was가 내부에서 세션을 삭제한다.
+> server.servlet.session.timeout=60
+
+
