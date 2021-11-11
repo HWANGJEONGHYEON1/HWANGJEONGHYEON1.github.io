@@ -149,3 +149,70 @@ public class WebConfig {
     }
 }
 ```
+
+
+### 인터셉터
+- 흐름
+    - HTTP 요청 -> was -> 필터 -> 스프링 인터셉터 -> 컨트롤러
+- 디스패처 서블릿 이후 호출
+- 서블릿 URL 패턴과는 다르게 정밀하게 설정가능
+- 체인가능 (인터셉터 - 인터셉터 ...)
+- 컨트로러 호출 전, 호출 후, 요청 완료 이후 단계적 세분화
+- 어떤 컨트롤러가 호출 되었는지, modelAndView가 반환되었는지 확인할 수 있다.
+- 에러발생 시
+    - preHandle: 컨트롤러 호출 전
+    - postHandle: 호출 안됨
+    - afterCompletion: 항상 호출 ex로 로그 출력가능
+
+- 소스 적용
+```java
+@Slf4j
+public class LogInterceptor implements HandlerInterceptor {
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        final String requestURI = request.getRequestURI();
+        final String uuid = UUID.randomUUID().toString();
+
+        request.setAttribute("logId", uuid);
+
+        //@RequestMapping : HandlerMethod
+        //정적 리소스 : ResourceHttpRequestHandler
+        if (handler instanceof HandlerMethod) {
+            final HandlerMethod hm = (HandlerMethod) handler;// 호출할 컨트롤러 메서드의 모든 정보가 포함되어있다.
+        }
+
+        log.info("REQUEST [{}][{}][{}]", uuid, requestURI, handler);
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        log.info("postHanderl {}", modelAndView);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        final String requestURI = request.getRequestURI();
+        final String logId = (String) request.getAttribute("logId");
+        log.info("RESPONSE [{}][{}][{}]", logId, requestURI, handler);
+
+        if (ex != null) {
+            log.error("afterCompletion err {}", ex);
+        }
+
+
+    }
+}
+
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogInterceptor())
+                .order(1)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/css/**", "/*.ico", "/error"); // 하위는 전부 다
+    }
+    ...
+```
