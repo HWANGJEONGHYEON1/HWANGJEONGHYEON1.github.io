@@ -53,6 +53,9 @@ public class ResourceConverter {
     }
 }
 
+@RestController
+public class Controller {
+
   @RequestMapping(value = "/api/roles", method = {RequestMethod.POST})
     public ResponseEntity<ResponseObject> createRoles(@RequestBody @Valid RoleParam roleParam,
                                                         BindingResult bindingResult) throws NotValidParamException {
