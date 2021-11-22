@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "싱글톤에 대하여(멀티스레드)"
-date:   2021-11-18 19:22:21 +0900
+date:   2021-11-22 19:22:21 +0900
 categories: java, singleton
 ---
 # 멀티스레드에서 싱글톤
