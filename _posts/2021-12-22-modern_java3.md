@@ -72,6 +72,7 @@ Optional<T> findAny();
 - reduce: 모든 스트림 요소를 BinaryOperator로 처리해서 값으로 도출 => 두번 째 reduce 메서드와 같은 경우 초기값이 없으므로 아무요소가 없을 때 `Optional<T>` 반환
 - reduce 메서드 장점: 기존의 단계적 반복으로 구하는것보다 reduce를 이용하면 내부 반복이 추상화되면서 내부 구현에서 병렬로 reduce를 실행할 수 있게 된다. 반복적인 합계에서는 sum 변수를 공유해야하므로 병렬하기 어렵다.
 - max, min: 요소에서 최대값과 최소값을 반환. 빈 스트림일 수 있기에 Optional<T>
+
 ```java
 T reduce(T identity, BinaryOperator<T> accumulator);
 Optional<T> reduce(BinaryOperator<T> accumulator);
