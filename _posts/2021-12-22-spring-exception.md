@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spring-exception"
+title:  "client-exception-spring"
 date:   2021-12-22 22:30:21 +0900
 categories: java, spring, exception
 ---
