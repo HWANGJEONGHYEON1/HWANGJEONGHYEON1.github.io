@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Modern Java - 7"
-date:   2021-12-27 16:20:21 +0900
+date:   2021-12-28 16:20:21 +0900
 categories: java
 ---
 
