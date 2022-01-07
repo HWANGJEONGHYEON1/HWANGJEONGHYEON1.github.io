@@ -9,7 +9,7 @@ categories: java
 
 # 객체 생성과 파괴
 
-### 생성자 대신 정적 팩토리 메서드를 고려하라
+### item1)생성자 대신 정적 팩토리 메서드를 고려하라
 - 클래스의 인스턴스를 반환하는 단순한 정적 메서드
 
 ```java
@@ -43,3 +43,87 @@ public static Boolean valueOf(boolean b) {
     - 상속을하려면 public이나 protected 생성자가 필요하니 정적 팩터리 메서드만 제공하면 하위클래스를 만들 수 없다.
         - 컴포지션 개념이면 장점으로 받아들일 수 있다.
     - 정적 팩터리 메서드는 프로그래머가 찾기 힘들다.
+
+- 흔한 명명 방식
+    - from
+    - of
+    - valueOf
+    - instance
+    - create
+    - getType
+    - newType
+    - type
+
+
+### item2) 생성자에 매게변수가 많다면 빌더를 고려하라
+- 선택적 매게변수가 많은 때 적절히 대응하기 어렵다.
+- 점층적 생성자 패턴도 쓸 수는 있지만, 매게변수 개수가 많아지면 클라이언트 코드를 작성하거나 읽는것이 어렵다.
+- 이후 대안 `자바빈즈 패턴` : setter 메서드를 활용
+    - 읽기 더 쉬워졌다
+    - 단점: 객체 하나를 만들려면 여러번의 메서드를 호출해야한다.
+    - 객체가 완전히 생성될 때까지 일관성이 무너진 상태이다.
+    - 불변으로 만들 수 없다.
+- `빌더패턴`
+    - 필요한 객체를 집접 만드는 대신, 필수 매개변수만 생성자를 호출하여 빌더 객체를 얻는다.
+    - 빌더는 모두 불변이다.
+    - 메서드호출이 흐르듯 연결된다는 뜻으로 플루언트 API, 메서드 연쇄라고 부른다.
+    - 명명된 선택적 매개변수를 흉내낸 것
+    - 계층적으로 설게된 클래스와 잘 어울리는 패턴이다.
+    - 생성자나 정적팩터리가 처리해야할 매개변수가 많을 땐 빌더패턴으로 고려하는게 좋다.
+
+```java
+public class NutritionFacts {
+    private final int servingSize;
+    private final int servings;
+    private final int calories;
+    private final int fat;
+    private final int sodium;
+    private final int carbohydrate;
+
+    public static class Bulider {
+        // 필수
+        private final int servingSize;
+        private final int servings;
+
+        // 선택
+        final int calories = 0;
+        final int fat = 0;
+        final int sodium = 0;
+        final int carbohydrate = 0;
+
+        public Bulider(int servingSize, int serving) {
+            this.servingSize = servingSize;
+            this.serving = serving;
+        }
+
+        public Builder calories(int val) {
+            this.calories = val;
+            return this;
+        }
+
+        public Builder fat(int val) {
+            this.fat = val;
+            return this;
+        }
+
+        public Builder sodium(int val) {
+            this.sodium = val;
+            return this;
+        }
+
+        public Builder carbohydrate(int val) {
+            this.carbohydrate = val;
+            return this;
+        }
+
+        private NutirtionFacts(Builder bulider) {
+            servingSize = builder.servingSize;
+            servings = builder.serving;
+            calories = builder.calories;
+            fat = builder.fat;
+            sodium = builder.sodium;
+            carbohydrate = builder.carbohydrate;
+        }
+    }
+}
+```
