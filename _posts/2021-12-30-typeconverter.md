@@ -69,5 +69,4 @@ public class WebConfig implements WebMvcConfigurer {
 - 처리과정 : @RequestParam을 처리하는 ArgumentResolver인 RequestParamMethodArgumentResolver에서 컨버전서비스를 사용하여 타입을 변경
 
 
-### 포매터
-- 포매터는 객체를 문자로 변경하고, 
+
