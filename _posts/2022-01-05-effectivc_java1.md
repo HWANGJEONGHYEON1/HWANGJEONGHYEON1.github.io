@@ -127,3 +127,52 @@ public class NutritionFacts {
     }
 }
 ```
+
+### item3) private 생성자나 열거 타입으로 싱글턴임을 보증하라
+- 클래스를 싱글턴으로 만들면 이를 사용하는 클라이언트를 테스트하기가 어려워질 수 있다.
+
+```java
+public class Elvis {
+    public static final Elvis INSTANCE = new Elvis();
+
+    private Elvis(){}
+    ...
+
+}
+
+```
+
+- public 이나 protected 생성자가 존재하지 않으므로 초기화할 때 만들어진 인스턴스가 전체 시스템에서 하나임을 보장
+- 싱글턴임이 API에 명백히 보장
+    - public static final
+- 대부분 상황에서는 원소가 하나뿐인 열거 타입이 싱글톤을 만드는 가장 좋은 방법이다.
+
+
+### item4) 인스턴스화를 막으려면 private 생성자를 사용해라
+- 추상 클래스로 만드는 것으로는 인스턴스화를 막을 수 없다.
+- private 생성자(); 
+- 상속이 불가능하게하는 효과
+
+
+### item5) 자원을 직적 명시하지말고 의존 객체 주입을 사용하라
+- 사용하는 자원에 따라 동작이 달라지는 클래스에는 정적 유틸리티 클래스나 싱글턴 방식이 적합하지 않다.
+- 클래스가 여러 자원 인스턴스를 지원해야하며, 클라이언트가 원하는 자원을 사용해야한다. 이 조건을 만족하려면 `인스턴스를 생성할 때 생성자에 필요한 자원을 넘겨주는 방식`
+
+```java
+public class SpellChecker {
+    private final Lexicon dictionary;
+
+    public SpellCheck(Lexicon dictionary) {
+        this.dictionary = Objects.requireNonNull(dictionary);
+    }
+    ...
+}
+
+```
+
+- 불변 보장
+- 클라이언트가 의존 객체를 안심하고 사용
+
+정리
+> 클래스가 내부적으로 하나 이상의 자원에 의존하고, 그 자원이 클래스 동작에 영향을 준다면 싱글턴과 정적 유틸리티 클래스는 사용하지 않는것이 좋다.
+> 이 자원들을 클래스가 직접 만들게 해서도 안된다. 대신 필요한 자원을 생성자에 넘겨주자. 의존 객체 주입은 클래스의 유연성, 재사용성, 테스트 용이성까지 개선해준다.
