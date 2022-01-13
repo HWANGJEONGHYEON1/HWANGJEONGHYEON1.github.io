@@ -25,3 +25,53 @@ String s = "aa"; // 문자열 리터럴을 사용하는 모든 코드가 같은 
 - 객체 생성은 비싸니까 피해야한다 라는 의미가 아니다
     - JVM입장에서는 작은 객체를 생성하고 회수하는 일은 부담이 되지 않는다.
         - 프로그램의 명확성, 간결성, 기능을 위해서 좋은 일
+
+```java
+    Long sum = 0L;
+    for (long i = 0; i <= Integer.MAX_VALUE; i++ ) {
+        sum += i;
+    }
+
+    return sum; // 실행시간 6초 => Long sum to long sum 실행시간 0.59초
+
+```
+
+- 박싱된 기본타입보다는 기본 타입을 사용하고, 의도치 않은 오토박싱에 주의해야한다.
+
+
+### itme7) 다 쓴 객체 참조를 해제하라
+
+- 가비지 컬렉션 언어에서는 메모리 누수를 찾기가 힘들다. 객체 참조 하나를 살려두면 가비 컬렉터는 그 객체 뿐 아니라 그 객체가 참조하는 모든 객체를 회수하지 못한다.
+- 해법 : 다 썻다면 null 처리를 통해 참조 해제를 하면 된다.
+
+```java
+
+pbulic Object pop() {
+    if (size == 0) {
+        throw new EmptyStacException();
+    }
+    return elements[--size];
+}
+
+pbulic Object pop() {
+    if (size == 0) {
+        throw new EmptyStacException();
+    }
+    Object result = elements[--size];
+    elements[--size] = null; // 참조 해제
+    return result;
+}
+
+```
+
+- 캐시 역시 메모리 누수를 일으키는 주범이다
+    - 객체참조를 캐시에 넣고 까먹는 경우가 있다
+        - 해법: WeakHashMap: 다 쓴 엔트리는 그 즉시 자동으로 제거된다.
+        - 이러한 상황에 유의하여 사용해야한다.
+    - 백그라운드 스레드를 활용하거나 캐시에 새 엔트리를 추가할 때 부수작업으로 수행하는 방법
+        - LinkedHashMap은 removeEldestEntry 메서드 사용한다.
+
+### item8) finalizer와 cleaner 사용을 피하라
+- finalizer는 예측할 수 없고, 상황에 따라 위험할 수 있어 일반적으로 불필요하다.
+- cleaner가 대안으로 나왔지만, 여전히 예측할 수 없고 느라고, 일반적으로 불필요하다.
+- finalizer cleaner는 제때 실행되어야하는 작업은 절대 할 수가 없다.
