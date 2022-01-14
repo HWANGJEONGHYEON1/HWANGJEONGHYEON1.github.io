@@ -75,3 +75,47 @@ pbulic Object pop() {
 - finalizer는 예측할 수 없고, 상황에 따라 위험할 수 있어 일반적으로 불필요하다.
 - cleaner가 대안으로 나왔지만, 여전히 예측할 수 없고 느라고, 일반적으로 불필요하다.
 - finalizer cleaner는 제때 실행되어야하는 작업은 절대 할 수가 없다.
+
+
+### item9) try-finally 보다는 try-with-resources를 사용하라
+- 자원이 제대로 닫힘을 보장하는 수단으로는 try-catch가 쓰였다.
+
+```java
+    BufferedReader br = new BufferedReader(new FileReader(path));
+    try {
+        return br.readLine();
+    } finallay {
+        br.close();
+    }
+```
+
+- try - resource - with
+    - 꼭 회수해야하는 자원이 있을 때 사용
+    - 코드는 짧고 분명해진다.
+
+```java
+
+    try(BufferedReader br = new BufferedReader(new FileReader(path))) {
+        return br.readLine();
+    }
+```
+
+# 모든 객체의 공통 메서드
+> Equals, hashcode, toString은 모두 재정의 염두에 두고 설계된 것
+
+### item10) equals는 일반 규약을 지켜 재정의하라
+- 각 인스턴스가 본질적으로 고유하다.
+- 인스턴스의 `논리적 동치성`을 검사할 일이 없다.
+- 상위 클래스에서 재정의한 equlas가 하위 클래스에도 딱 들어 맞는다.
+- 클래스가 private 이거나 pakage-private이고 equlas 메서드 호출할 일이 없다.
+- 재정의 해야할 때
+    - 객체 실별성이 아니라 논리적 동치성을 확인해야하는대, 상위 클래스의 equlas가 논리적 동치성을 비교하도록 재정의되지 않았을 때
+- equlas메서드는 동치관계를 구현하며, 다음을 만족
+    - 반사성 : null이 아닌 모든 참조값 x에 대하, x.equals(x) = true
+    - 대칭성 : null이 아닌 모든 참조 값 x, y에 대해, x.equals(y)가 true면 y.equals(x)도 true
+    - 추이성 : null이 아닌 모든 참조 값 x, y, z에 대해, x.equals(y)가 true면 y.equals(x)도 true, x.equals(z)이면 z.equals(y)도 true
+    - 일관성 : null이 아닌 모든 참조 값 x, y, z에 대해, x.equals(y)는 항상 true 또는 false를 밥환한다.
+    - null-아님 : null이 아닌 모든 참조값 x에 대해, x.equlas(null)은 false다.
+- 동치관계 : 집합을 서로 같은 원소들로 이루어진 부분집합으로 나누는 연산(서로 자원을 바꿔도 모두 같은 부류여야한다.)
+- 반사성 : 객체는 자기 자신과 같아야한다. 
+- 대치성 : 두 객체는 서로에 대한 동치 여부에 똑같이 답해야한다.
