@@ -109,13 +109,123 @@ pbulic Object pop() {
 - 상위 클래스에서 재정의한 equlas가 하위 클래스에도 딱 들어 맞는다.
 - 클래스가 private 이거나 pakage-private이고 equlas 메서드 호출할 일이 없다.
 - 재정의 해야할 때
-    - 객체 실별성이 아니라 논리적 동치성을 확인해야하는대, 상위 클래스의 equlas가 논리적 동치성을 비교하도록 재정의되지 않았을 때
+    - 객체 실별성이 아니라 논리적 동치성을 확인해야하는대, 상위 클래스의 equals가 논리적 동치성을 비교하도록 재정의되지 않았을 때
 - equlas메서드는 동치관계를 구현하며, 다음을 만족
     - 반사성 : null이 아닌 모든 참조값 x에 대하, x.equals(x) = true
     - 대칭성 : null이 아닌 모든 참조 값 x, y에 대해, x.equals(y)가 true면 y.equals(x)도 true
     - 추이성 : null이 아닌 모든 참조 값 x, y, z에 대해, x.equals(y)가 true면 y.equals(x)도 true, x.equals(z)이면 z.equals(y)도 true
     - 일관성 : null이 아닌 모든 참조 값 x, y, z에 대해, x.equals(y)는 항상 true 또는 false를 밥환한다.
-    - null-아님 : null이 아닌 모든 참조값 x에 대해, x.equlas(null)은 false다.
+    - null-아님 : null이 아닌 모든 참조값 x에 대해, x.equals(null)은 false다.
 - 동치관계 : 집합을 서로 같은 원소들로 이루어진 부분집합으로 나누는 연산(서로 자원을 바꿔도 모두 같은 부류여야한다.)
 - 반사성 : 객체는 자기 자신과 같아야한다. 
 - 대치성 : 두 객체는 서로에 대한 동치 여부에 똑같이 답해야한다.
+- 추이성 위반
+    - 두 클래스가 있을 때, equals 메서드를 쓴다면, ColorPoint 클래스를 비교하게 되었을 때 color를 무시하고 비교를 하게된다.
+    - point.equals()
+
+```java
+
+public class Point {
+    private final int x;
+    private final int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Point)) {
+            return false;
+        }
+
+        Point p = (Point) o;
+        return x== p.x && y == p.y;
+    }
+}
+
+
+public class ColorPoint extends Point {
+    private final Color color;
+
+    public ColorPoint(int x, int y, Color color) {
+        super(x, y);
+        this.color = color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof ColorPoint)) {
+            return false;
+        }
+        
+        return super.equals(o) && ((ColorPoint) o).color == color;
+    }
+
+}
+        // 대칭성 위반! 
+        Point p = new Point(1, 2);
+        ColorPoint colorPoint = new ColorPoint(1, 2, Color.RED);
+        System.out.println(p.equals(colorPoint)); // true
+        System.out.println(colorPoint.equals(p)); // false
+
+        // 추이성 위반!
+        ColorPoint p1 = new ColorPoint(1, 2, Color.RED);
+        Point p2 = new Point(1, 2);
+        ColorPoint p3 = new ColorPoint(1, 2, Color.BLUE);
+
+        System.out.println(p1.equals(p2)); // t
+        System.out.println(p2.equals(p3)); // f
+        System.out.println(p1.equals(p3)); // t
+```
+
+- equals의 판단에 신뢰할 수 없는 자원이 끼어들게 해서는 안된다.
+- 양질의 equals 구현 방법
+    - == 연산자를 이용하여 입력이 자기 자신이 참조인지 확인.
+    - instanceof 연산자로 입력이 올바른 타입인지 확인.
+    - 입력을 올바른 타입으로 형변환
+    - 입력 객체와 자기 자신의 대응되는 `핵심` 필드들이 모두 일하는지 하나씩 검사
+    - equals를 다 구현했다면, 대칭적, 추이성, 일관성인지 확인해야한다.
+
+
+```java
+public class PhoneNumber {
+    
+    private final short areaCode, prefix, lineNumber;
+
+    public PhoneNumber(short areaCode, short prefix, short lineNumber) {
+        this.areaCode = rangeCheck(areaCode, 999, "지역코드");
+        this.prefix = rangeCheck(prefix, 999, "프리픽스");
+        this.lineNumber = rangeCheck(lineNumber, 9999, "가입자번호");
+    }
+
+    private short rangeCheck(short val, int max, String arg) {
+        if (areaCode < val || areaCode > max) {
+            throw new IllegalArgumentException("값이 정상아님");
+        }
+        return (short) val;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PhoneNumber)) return false;
+        PhoneNumber that = (PhoneNumber) o;
+        return areaCode == that.areaCode && prefix == that.prefix && lineNumber == that.lineNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(areaCode, prefix, lineNumber);
+    }
+}
+```
+
+- equals를 재정의할 땐, hashCode도 반드시 재정의해라
+- 복잡하게 해결하려고 하지말자
+- Object 외의 타입을 매개변수로 받는 equals 메서드는 선언하지 말자
+    - public boolean equals(AnotherClass class){}
+
+
+### item11) equals를 재정의하려거든 hashcode도 재정의하라
