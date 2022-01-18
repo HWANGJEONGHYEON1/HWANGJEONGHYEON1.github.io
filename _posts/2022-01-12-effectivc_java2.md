@@ -229,3 +229,36 @@ public class PhoneNumber {
 
 
 ### item11) equals를 재정의하려거든 hashcode도 재정의하라
+- equals를 재정의한 클래스에서 모두 hashcode도 재정의해야한다.
+    - 규약을 어긴다면 hashcode 일반규약을 어기게되어 클래스의 인스턴스 HashMap, HashSet 같은 컬렉션의 원소로 사용할 때 문제가 된다.
+- equal 비교에 사용되는 정보가 변경되지 않으면, 애플리케이션이 실행되는 동안 그 객체의 hashcode 메서드는 몇번을 호출해도 일관되게 항상 같은 값을 반환해야한다.
+- equals가 두 객체를 같다고 판단했다면, 두 객체의 hashcode는 똑같은 값을 반환해야한다.
+- euqals가 두객체를 다르다고 판단했더라도, 두 객체의 hashcode가 서로 다른 값을 반환할 필요는 없다. 단, 다른 값을 반환해야 해시테이블의 성능이 좋아진다.
+- hashCode 재정의를 잘못햇을 때 크게 문제가 되는 조하응 두번째, 논리적으로 같은 객체는 같은 해시코드를 반환해야한다.
+
+```java
+Map<PhoneNumber, String> m = new HashMap<>();
+
+m.put(new PhoneNumber(1,2,3), "jin");
+
+sysout(m.get(new PhoneNumber(1,2,3))) // null
+
+@Override
+public int hashCode() {return 42;} // 재정의해줌으로써 jin을 반환하지만 옯바르지 않다.
+
+```
+
+- public int hashCode() {return 42;} 
+    - 모든 해시값이 42이므로 같은 버킷 하나에 담겨 LinkedList처럼 동작한다.
+    - hashmap의 O(1) -> O(N)으로 바뀔 수 있다.
+- 이상적인 해시함수는 주어진 인스턴스를 32비트 정수범위에 균일하게 분배해야한다.
+
+```java
+
+public int hashCode() {
+    int result = Short.hashCode(areaCode);
+    result = 31 * result + Short(prefix);
+    result = 31 * result + Short(lineNum);
+    return result;
+}
+```
