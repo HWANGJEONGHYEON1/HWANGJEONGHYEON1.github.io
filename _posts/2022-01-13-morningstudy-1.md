@@ -268,3 +268,8 @@ private FieldService fieldService = new FieldService();
         sleep(3000);
     }
 ```
+
+### Template mehtod pattern
+- 템플릿 메서드 패턴은 이름 그대로 템플릿을 사용하는 방식
+- 기준이 되는 거대한 틀
+- 틀에 변하지 않는 부분을 몰아두고 변하는 부분은 별도 호출해해서 사용
