@@ -273,3 +273,47 @@ private FieldService fieldService = new FieldService();
 - 템플릿 메서드 패턴은 이름 그대로 템플릿을 사용하는 방식
 - 기준이 되는 거대한 틀
 - 틀에 변하지 않는 부분을 몰아두고 변하는 부분은 별도 호출해해서 사용
+- 변하는 부분과 변하지 않는 부분을 분리
+- 부모클래스에 알고리즘의 골격인 템플릿을 정의, 일부 변경되는 로직은 자식클래스에 정의
+- 알고리즘 전체구조를 변경하지 않고, 특정 부분만 재정의할 수 있다.
+- 단점) 상속을 사용하여, 자식클래스는 컴파일 시점에 부모클래스와 강하게 결합된다.
+    - 자식 클래스 입장에서는 부모 클래스의 기능을 전혀 사용하지 않는다.
+- 단점 대안 => `전략 패턴`
+
+```java
+
+public abstract class AbstractTemplate {
+
+    public void execute() {
+        long startTime = System.currentTimeMillis();
+        log.info("# business execution 2");
+        call();
+        long endTime = System.currentTimeMillis();
+        log.info("resultTime {}", endTime - startTime);
+
+    }
+
+    protected abstract void call();
+}
+
+@Slf4j
+public class SubClassLogic1 extends AbstractTemplate {
+    @Override
+    protected void call() {
+        log.info("비지니스 로직 1");
+    }
+}
+
+
+@Slf4j
+public class SubClassLogic2 extends AbstractTemplate {
+    @Override
+    protected void call() {
+        log.info("비지니스 로직 2");
+    }
+}
+
+```
+
+### 익명 내부 클래스 사용 - 템플릿 패턴
+- 객체인스턴스를 생성하면서 동시에 생성할 클래스를 상속 받은 자식 클래스를 정의할 수 있다.
