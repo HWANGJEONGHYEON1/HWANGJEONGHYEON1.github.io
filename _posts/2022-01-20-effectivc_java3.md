@@ -13,5 +13,12 @@ categories: java
 - toString을 잘 구현한 클래스는 사용하기에 좋고, 디버깅이 쉽다.
 - toString은 해당 객체에 관해 명확하고 유용한 정보를 읽기 좋은 형태로 반환해야한다.
 
-### item13) clone 재정의는 주의해서 진행하라
-- 
+### item14) Comparable을 구현할지 고려하라
+- 메서드 compareTo는 단순 동치성 비교
+- 알파벳, 숫자, 연대 같이 순서가 명확한 값 클래스를 작성하면 반드시 Comparable을 구현하자.
+
+```java
+public interface Comparable<T> {
+    int compareTo(T t)
+}
+```
