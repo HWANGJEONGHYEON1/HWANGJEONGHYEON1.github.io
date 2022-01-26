@@ -122,7 +122,7 @@ public class InstrumentHashSet<E> extends HashSet<E> {
 
 - 3이 출력될 것  같았지만 6이나온다.
 - 원인
-    - HashSet의 addAll은 각 원소를 add 메서드를 통해 호출하여 addCount가 중복해서 더해져 최종 갑으로 6이 나온다.
+    - HashSet의 addAll은 각 원소를 add 메서드를 통해 호출하여 addCount가 중복해서 더해져 최종 갑으로 6이 나온다.   
 ```java
     // HashSet의 addAll
     public boolean addAll(Collection<? extends E> c) {
@@ -135,7 +135,8 @@ public class InstrumentHashSet<E> extends HashSet<E> {
 
 ```
 
-- 해결 => 컴포지션
+- 해결 (컴포지션)   
+
 
 ```java
 public class InstrumentedHashSet<E> extends ForwardingSet<E> {
