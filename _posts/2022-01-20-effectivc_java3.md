@@ -137,8 +137,8 @@ public class InstrumentHashSet<E> extends HashSet<E> {
 
 - 해결 (컴포지션)   
 
-
 ```java
+
 public class InstrumentedHashSet<E> extends ForwardingSet<E> {
     private int addCount = 0;
 
@@ -168,6 +168,7 @@ public class InstrumentedHashSet<E> extends ForwardingSet<E> {
         System.out.println(s.getCount());// 3
     }
 }
+
 ```
 
 ### 상속을 고려해 설계하고 문서화하라. 그러지 않으면 상속은 금지하라.
