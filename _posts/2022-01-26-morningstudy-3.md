@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "morningstudy-3(proxy, decorator pattern)"
-date:   2022-01-26 08:20:21 +0900
+date:   2022-01-26 08:21:21 +0900
 categories: steady, blogging
 ---
 
