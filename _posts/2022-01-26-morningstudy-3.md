@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "morningstudy-3(proxy, decorator pattern)"
+title:  "프록시, 데코레이터 패턴"
 date:   2022-01-26 08:21:21 +0900
 categories: steady, blogging
 ---

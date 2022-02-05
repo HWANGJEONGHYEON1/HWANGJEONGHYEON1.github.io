@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "morningstudy-1"
+title:  "탬플릿 메서드 패턴"
 date:   2022-01-13 08:20:21 +0900
 categories: steady, blogging
 ---

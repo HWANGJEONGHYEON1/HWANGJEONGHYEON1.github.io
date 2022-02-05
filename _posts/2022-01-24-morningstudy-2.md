@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "morningstudy-2"
+title:  "전략패턴"
 date:   2022-01-24 08:20:21 +0900
 categories: steady, blogging
 ---
