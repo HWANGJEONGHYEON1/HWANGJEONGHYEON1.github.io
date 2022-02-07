@@ -118,7 +118,7 @@ categories: steady, blogging
 ### 프록시 팩토리
 - 이 전 문제점
     - 인터페이스가 있을 때는 JDK 동적프록시 적용, 아니면 CGLIB를 적용
-    - 두 기술을 ㅎ마께 사용할 때 부가기느을 제공하기 위해 JDK 동적 프록시가 제공하는 InvocationalHandler 와 CGLIB가 제공하는 MethodInterceptor를 중복으로 각각 만들어야한다.
+    - 두 기술을 함께 사용할 때 부가기능을 제공하기 위해 JDK 동적 프록시가 제공하는 InvocationalHandler 와 CGLIB가 제공하는 MethodInterceptor를 중복으로 각각 만들어야한다.
     - 특정 조건에 맞을 때 프록시 로직을 적용하는 기능이 있다면 어떻게 ?
 - 스프링은 유사한 기술이 있을 때 그것들을 통합해서 일관성있게 제공하고, 더욱 편리하게 추상화 된 기술을 제공한다.
 - 문제점 해결
@@ -168,7 +168,7 @@ categories: steady, blogging
     }
 
     @Test
-    @DisplayName("구체클래스가 있으면 JDK 동적 프록시 사용")
+    @DisplayName("구체클래스가 있으면 cglib 프록시 사용")
     void concreteProxy() {
         ConcreteService target = new ConcreteService();
         ProxyFactory proxyFactory = new ProxyFactory(target);
