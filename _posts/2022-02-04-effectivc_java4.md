@@ -62,3 +62,66 @@ categories: java
 - 배열은 공변이다 
     - `Sub가 Super의 하위 타입이라면 배열 Sub[]은 배열 Super[]의 하위타입이 된다. 함께 변한다.`
 - 제네릭은 불공변이다.
+- 배열은 런타임에는 타입이 안전하지만, 컴파일에는 그렇지 않다.
+
+### item29) 이왕이면 제네릭 타입으로 만들라.
+- 클라이언트에서 직접 형변환을 해야하는 타입보다 제네릭 타입이 더 안전하고 쓰기 편하다.
+- 새로운 타입을 설계할 때는 형변환없이도 사용할 수 있도록 하라.
+- 기존 타입 중 제네릭이 있어야하는게 있다면, 제네렉 타이브로 변경하자. 기존 클라이언트에는 아무 영향을 주지 않으면서 새로운 사용자를 훨씬 편하게 해준다.
+
+### item30) 이왕이면 제네릭 메서드로 만들라.
+
+- 제네릭 타입과 마찬가지로, 클라이언트에서 매개변수와 반환값을 명시적으로 반환해야하는 메서드보다 제네릭 메서드가 더 안전하며 쓰기 쉽다.
+- 타입과 마찬가지로, 메서드도 형변환 없이 사용할 수 있는 편이 좋다.
+- 코드
+
+```java
+public static Set union(Set s1, Set s2) { 
+    Set result = new HashSet(s1);
+    result.addAll(s2);
+    return result;
+}
+
+public static E Set<E> union(Set<E> s1, Set<E> s2) {
+    Set<E> result = new HashSet<E(s1);
+    result.addAll(s2);
+    return result;
+}
+```
+
+### item31) 한정적 와일드 카드를 사용해서 API 유연성을 높이자.
+- 와일드카드
+    - 제네릭코드에서 물음표로 표기되어있는 것을 말한다. 아직 알려지지 않은 타입
+- PECS
+    - producer - extends, consumer-super
+    - 매게변수화 타입 T가 생산자인 경우 `<? extends E>`(타입의 제한을 풀어줄 때 사용), 소비자이면 `<? super E>`를 사용(타입을 제한할 때)
+
+```java
+    public static class Stack<E> {
+        public void pushAll(Iterable<? extends E> src) { // 한정적 와일드카드 사용 E로만 했을시 에러
+            for (E e : src) {
+                push(e);
+            }
+        }
+
+        public void push(E e) {
+
+        }
+    }
+
+    @Test
+    void test() {
+        Stack<Number> stack = new Stack<>();
+        Iterable<Integer> integers = new Iterable<Integer>() {
+            @Override
+            public Iterator<Integer> iterator() {
+                return null;
+            }
+        };
+        stack.pushAll(integers); // 
+
+    }
+```
+
+- 유연성을 극대화하려면 원소의 생산자나 소비자용 입력 매게변수에 와일드카드 타입을 사용하라.
+
