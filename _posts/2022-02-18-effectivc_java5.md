@@ -56,3 +56,80 @@ public enum Ensemble {
 
 ### item37) ordinal indexing 대신 EnumMap을 사용하라 
 - 배열의 인덱스를 얻기위해 ordinal을 쓰는것은 일반적으로 좋지 않으니, EnumMap을 사용하라.
+
+
+### item37) 확장할 수 있는 열거 타입이 필요하면 인터페이스를 사용하라.
+- 열거타입은 타입은 타입 안전하지만, 확장하면 할 수록 설계와 구현이 복잡해진다.
+- 열거 타입이 인터페이스를 구현할 수 있다.
+- 연산코드용 인터페이스를 정의하고 열거 타입이 인터페이스를 구현하게 하면 된다.
+
+```java
+public enum BasicOperation implements Operation {
+    PLUS("+") {
+        @Override
+        public double apply(double x, double y) {
+            return x + y;
+        }
+    },
+    MINUS("-") {
+        @Override
+        public double apply(double x, double y) {
+            return x - y;
+        }
+    },
+    TIMES("*") {
+        @Override
+        public double apply(double x, double y) {
+            return x * y;
+        }
+    },
+    DIVIDE("/") {
+        @Override
+        public double apply(double x, double y) {
+            return x / y;
+        }
+    };
+    
+    private final String symbol;
+    
+    BasicOperation(String symbol) {
+        this.symbol = symbol;
+    }
+}
+```
+
+- 열거타입인 BasicOperation 확장 불가능하지만, Operation은 확장할 수 있다.
+
+```java
+
+
+public enum ExtendedOperation implements Operation {
+    
+    EXP("^") {
+        @Override
+        public double apply(double x, double y) {
+            return Math.pow(x, y);
+        }
+    },
+    REMINDER("%") {
+        @Override
+        public double apply(double x, double y) {
+            return x % y;
+        }
+    };
+    
+    private String symbol;
+
+    ExtendedOperation(String symbol) {
+        this.symbol = symbol;
+    }
+}
+
+
+```
+
+- Operation을 구현한 열거타입만 작성하면 끝이다.
+- 열거타입은 확장할 수 없지만, 인터페이스와 그 인터페이스를 구현하는 기본 열거타입을 함께 사용해 같은 효과를 낼 수 있다.
+
+
+### item39) 명명 패턴보다 애너테이션을 사용하라
