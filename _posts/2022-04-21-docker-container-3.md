@@ -27,3 +27,18 @@ categories: docker
 7. 깃허브등을 이용한 Dockerfile 관리 => 도커 허브사이트와 연동하게되면 자동화된 빌드 기능을 이용한 이미지 생성도 가능하다.
 8. 동일 환경에서의 지속적 어플리케이션 개발 수행 => 1~7 과정을 업무용 애플리케이션 이미지를 지속적으로 개발, 운영및 관리할 수 있다.
 
+
+## 도커 이미지 명령어
+- 도커 이미지 내려받기
+    - docker pull: 도커 허브 레지스트리에서 로컬로 도커이미지 내려받기
+    - docker push: 로컬에 있는 도커 이미지를 도커 허브 레지스트리에 업로드
+    - docker login/logout: 업로드를 하기 전 도커 허브계정으로 로그인하기
+- 도커 이미지 세부 정보조회
+    - docker image inspect [OPTIONS] IMAGE [IMAGE..]
+        - 명령의 출력결과는 JSON 언어 형태로 출력되는 정보가 많기 때문에 포맷 옵셜을 이용하여 원하는 정보만 출력할 수 있다.
+        - 주요 정보
+            - Image ID: "id"
+            - 생성일: "Created"
+            - 도커 버전: "DockerVersion"
+            - CPU 아키텍처: "Archiecture"
+            - 이미지 다이제스트 정보: "RootFS"
