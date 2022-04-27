@@ -87,13 +87,63 @@ categories: docker
 ## 컨테이너 모니터링 도구 cAdvisor 컨테이너 실행
 - 서비스 운영을 하면서 필요한 시스템을 모니터링 하면서 특이사항 있을 때 대응하기 위해 모니터링수행
 ```
-docker run \
- --volume=/:/rootfs:ro \
- --volume=/var/run:/var/run:rw \
- --volume=/sys:/sys:ro \
- --volume=/var/lib/docker/:/var/lib/docker:ro \
- --publish=9559:8081 \
- --detach=true \
- --name=cadvisor \
- google/cadvisor:latest
+VERSION=v0.36.0 # use the latest release version from https://github.com/google/cadvisor/releases
+sudo docker run \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:ro \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --volume=/dev/disk/:/dev/disk:ro \
+  --publish=8080:8080 \
+  --detach=true \
+  --name=cadvisor \
+  --privileged \
+  --device=/dev/kmsg \
+  gcr.io/cadvisor/cadvisor:$VERSION
 ```
+
+## 웹 서비스 실행을 위한 nginx 컨테이너 실행
+- docker pull nginx:1.18
+- docker run --name webserver1 -d -p 8001:80 nginx:1.18
+    - --name: 컨테이너 이름지정
+    - -d : 컨테이너를 백그라운드에서 실행하고 컨테이너 id 출력
+    - -p : 컨테이너의 80번 포트를 host 번호를 8001로 오픈
+- netstat -p tcp -van | grep LISTEN | grep 8001 => 포트 열린것 확인
+- curl localhost:8001 => 접속 테스트
+- docker stats weberver1 (컨테이너의 실시간 리소스 사용량 확인)
+- docker top webserver1 => 컨테이너의 실행중인 프로세스 표시
+- docker logs -f webserver1 
+    - nginx 컨테이너의 접근 로그를 도커 명령을 통해 확인 (-f 실시간, -t 마지막 로그까지)
+- vi index.html => 원하는 문구를 넣는다.
+- docker cp index.html webserver1:/usr/share/nginx/html/index.html
+- curl localhost:8001 변경 확인
+- docker pause webserver1 => 일시정지
+- docker unpause webserver1 => 재시작
+- ps -ef | grep 8001
+- docker restart webserver1 
+    - 컨테이너를 재시작하는 것은 기존 컨테이너 프로세스를 정지하고 새로운 컨테이너 프로세스를 시작하는 것. 컨테이너 동작에는 영향을 주지 않지만 호스트의 PID만 변경된다.
+- ps -ef | grep 8001
+
+
+## 파이썬 프로그래밍 환경을 컨테이너로 제공
+```python
+from random import shuffle
+from time import sleep
+gamenum = input('로또 게임 회수를 입력:')
+for i in range(int(gamenum)):
+    balls = [x+1 for x in range(45)]
+    ret = []
+    for j in ragne(6):
+        shuffle(balls)
+        number = balls.pop()
+        ret.append(number)
+        ref.sort()
+        print('로또번호[%d]: ' %(i+1), end='')
+        print(ret)
+        sleep(1)
+```
+- docker run -it -d --name=python_test -p 8900:8900 python
+- vi py_lotto.py
+- docker cp py_lotto.py python_test:/
+- docker exec -it python_test bash => 파이썬 잘 설치되었는지 확인
+- docker exec -it python_test python /py_lotto.py
