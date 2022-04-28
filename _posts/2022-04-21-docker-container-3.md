@@ -133,11 +133,11 @@ gamenum = input('로또 게임 회수를 입력:')
 for i in range(int(gamenum)):
     balls = [x+1 for x in range(45)]
     ret = []
-    for j in ragne(6):
+    for j in range(6):
         shuffle(balls)
         number = balls.pop()
         ret.append(number)
-        ref.sort()
+        ret.sort()
         print('로또번호[%d]: ' %(i+1), end='')
         print(ret)
         sleep(1)
