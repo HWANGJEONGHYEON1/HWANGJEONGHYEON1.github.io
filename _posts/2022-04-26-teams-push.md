@@ -14,9 +14,9 @@ categories: docker
 > https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors 
 
 ## 소스
-- 현재는 컨트롤러에서 try catch로 다 작업되어있어 각각 정의해줬지만 @ControllerAdvice를 통해 응답스팩을 바꾸고 한번에 처리가능할것 같다.
+- 현재는 컨트롤러에서 try catch로 다 작업되어있어 각각 정의해줬지만 @ControllerAdvice를 통해 응답스팩을 바꾸고 한번에 처리가능할 것 같다.
 - 각 어느 환경에서 에러가나는지 @Value 어노테이션을 통해서 값을 가져오고 title에 합쳐주는 식으로 명시
-- TeamsUtil > 클래스에서 teams로 알람을 보내는대, 구현하고 보니 굳이 응답을 기다리지 않아도 되므로 async로 하면 어떨까 생각한다.
+- TeamsUtil 클래스에서 teams로 알람을 보내는대, 구현하고 보니 굳이 응답을 기다리지 않아도 되므로 async로 하면 어떨까 생각한다.
 - 현재 RestTemplate가 deprecated되어 있으므로 WebClient로 대체해야한다. 현재 프로젝트에서는 버전이 낮으므로 가능.
 
 ```java
