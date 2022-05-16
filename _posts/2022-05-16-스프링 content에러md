@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "스프링 restTemplate 사용 시 contentType 에러"
+date:   2022-05-16 18:20:21 +0900
+categories: spring
+---
+
+# 간단 설명
+> 회사는 MSA 프로젝트를 사용함으로써 서비스끼리 통신을 한다. 규격에 맞게 api를 개발하고 해당 api를 호출할 때 문제가 발생
+
+## 증상
+- restTemplate 통신 시 에러가 발생하고, 응답 결과를 HTML로 반환.
+- 서버에서 applcation/json으로 응답을 하는대, 통신 된 데이터가 text/html로 응답을 내려준다.
+> Could not extract response: no suitable HttpMessageConverter found for response type[text/html]
+- 포스트맨으로 해당 api 요청시 에러 발생하지 않음
+
+## 해결
+- 기존 요청 url은 http://dev.${api-domain}.com/api 라고한다면
+- https://dev.${api-domain}.com/api 를 바꾸줌으로써 해결되었다.
+- 해당원인은 사내 인프라팀에서 http 로 요청을 하면 내부적으로 https로 리다이렉트를 해주지만, 현재 진행중인 프로젝트는 따로 처리해주지않아 307이 내려줌으로써 text/html로 응답을 받아 에러가 발생했다.
+
+
+
+## 중요성
+- 의사소통
+- 빠르게 에러 발견 
+- 응답을 바로 봤으면 금방봤을탠데, 왜 안되지 이 생각밖에 안해 발견하는대 좀 걸렸다.
+
