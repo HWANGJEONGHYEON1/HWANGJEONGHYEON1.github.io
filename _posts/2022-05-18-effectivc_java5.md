@@ -53,3 +53,57 @@ public @interface ExceptionTest {
 ## item41) 정의하려는 타입이라면 마커인터페이스를 사용하라
 - 마커 인터페이스는 이를 구현한 클래스의 인스턴스를 구분하는 타입으로 쓸 수 있으나, 마커 애노테이션은 그렇지 않다.
 - 마커 인터페이스가 나은점은 적용 대상을 더 정밀하게 지정할 수 있다.
+
+
+# 람다와 스트림
+> 자바 8에서 함수형 인터페이스, 람다, 메서드 참조라는 개념이 추가
+
+
+## item42) 익명 클래스보다는 람다를 사용하라
+- 어떤 동작을 하는지 명확하게 드러난다.
+- 반환 값의 타입이 언ㄱ브되지 않았지만, 컴파일러가 문맥을 보고 타입을 추론해준것
+- 타입을 명시해야하 코드가 더 명확할 때만 제외하고는, 람다의 매게변수 타입은 생략하자
+- `메서드나 클래스와 달리, 람다는 이름이 없고 문서화도 못한다. 따라서 코드 자체로 동작이 명확히 설명되지 않거나 코드 줄 수가 많아지면 람다를 쓰지말아야한다.`
+
+
+```java
+
+    List<String> words = Arrays.asList("aa", "bbb", "cccccc");
+    Collections.sort(words, new Comparator <String>() {
+
+        @Override
+        public int compare(String o1, String o2) {
+            return Integer.compare(o1.length(), o2.length());
+        }
+    });
+    
+    Collections.sort(words, (o1, o2) -> Integer.compare(o1.length(), o2.length()));
+
+    Collections.sort(words, Comparator.comparingInt(String::length));
+
+    public static enum Operation {
+        PLUS("+", (x, y) -> x + y),
+        MINUS("-" , (x, y) -> x - y);
+
+        private final String symbol;
+        private final DoubleBinaryOperator op;
+
+        Operation(String symbol, DoubleBinaryOperator op) {
+            this.symbol = symbol;
+            this.op = op;
+        }
+
+        public double apply(double x, double y) {
+            return op.applyAsDouble(x, y);
+        }
+    }
+
+```
+
+## item43) 람다보다는 메서드 참조를 사용하라
+- 람다가 익명 클래스보다 나은 점 중에서 가장 큰 특징은 간결함
+- 함수 객체를 람다보다도 더 간결하게 만드는 방법이 있으니, 메서드 참조이다.
+- map.merge(key, 1, (count, incr) -> count + incr);
+    - 머지 메서드는 키 값 함수를 인수로 받으며, 주어진 키가 맵 안에없다면 주어진 쌍을 그래도 저장.
+    - 키가 있다면 함수를 주어진 현재 값에 적용한다음 그 결과로 현재 값을 덮어쓴다.
+    - map.merge(key, 1, Integer::sum;
