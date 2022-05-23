@@ -70,3 +70,44 @@ Password:
 <h1> hello, this is Hwang's application </h1>
 
 ```
+
+## 도커 컨테이너의 자원 사용에 대한 런타임 제약
+- 서버 자원 모니터링
+    - 서버 시스템 운영: 자원의 사용량(usage)
+    - 활용도
+    - CPU
+    - 메모리
+    - 디스크 I/O
+    - 네트워크 트래픽
+- 위의 목록들에 대해 문제점이 발생할 것 같은 곳을 찾아 예방하는것이 목적
+- 도구
+    - top
+        - 리눅스 전체의 자원 소비량 및 개별 액티브 프로세스의 자원 사용량
+    - htop
+        - top 보다 향상된 자원 사용량 제공
+    - sar
+        - 다양한 옵션을 통해 시스템 전반의 사용량에 대한 세부적인 모니터링 제공, 주로 셀 스크립트에 포함하여 활용
+    - vmstat, free
+        - 메모리 성능 측정이 가능
+    - dstat
+        - 서버 전반의 자원 사용량에 대한 모니터링 제공, 개별 옵션으로 제어가능
+    - iptraf-ng
+        - 서버로 유입되는 네트워크 인터페이스별 패킷양, 프로토콜등을 통해 네트워크 트래픽 모니터링
+- CPU 런타임 제약
+
+```
+# --cpu-shares
+
+❯ docker run -d --name cpu_512 \
+--cpu-shares 512\
+leecloudo/stress:1.0 stress --cpu 4
+invalid argument "512leecloudo/stress:1.0" for "-c, --cpu-shares" flag: strconv.ParseInt: parsing "512leecloudo/stress:1.0": invalid syntax
+See 'docker run --help'.
+
+~
+❯ docker run -d --name cpu_512 \
+--cpu-shares 512 \
+leecloudo/stress:1.0 stress --cpu 4
+05b70693ff1f3acded3559e31a33ed59ca8154dcaf34e98f978988d55c08e84d
+
+```
