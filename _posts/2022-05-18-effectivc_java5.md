@@ -107,3 +107,31 @@ public @interface ExceptionTest {
     - 머지 메서드는 키 값 함수를 인수로 받으며, 주어진 키가 맵 안에없다면 주어진 쌍을 그래도 저장.
     - 키가 있다면 함수를 주어진 현재 값에 적용한다음 그 결과로 현재 값을 덮어쓴다.
     - map.merge(key, 1, Integer::sum;
+    
+    |메서드 참조 유형|예 | 같은 기능을 하는 람다|
+    |---|---|---|---|
+    | 정적 | Integer.::parseInt | str -> Integer.parseInt(str)|
+    | 한정적(인스턴스) | Instant.now()::isAfter()| Instant then = Instant.now(); t -> then.isAfter(t)|
+    | 비한정적(인스턴스) | String::toLowerCase | str -> str.toLowerCase() |
+    | 클래스 생성자 | TreeMap<K,V>::new | () -> new TreeMap<K,V>() |
+
+- 메서드 참조는 람다의 간단 명료한 대안이 될 수 있다. 메서드 참조 쪽이 짧고 명확하다면 메서드 참조쓰고, 그렇지 않을때만 람다를 사용하라
+
+## item44) 표준 함수형 인터페이스를 사용하라
+- 
+
+## item46) 스트림에서는 부작용없는 함수를 사용하라
+- 순수함수란?
+    - 오직 입력만이 결과에 영향을 주는 함수를 말한다.
+    - 다른 가변상태를 참조하지 않고, 함수 스스로도 다른 상태를 변경하지 않는다.
+
+    ```java
+    Map<String, Long> freq = new HashMap<>();
+    try (Stream<String> words = new Scanner(file).tokens()) {
+        words.forEach(word -> {
+            freq.merge(word.toLowerCase(), 1L, Long::sum);
+        });
+    }
+    ```
+    
+    - 스트림, 람다, 메서드 참조를 사용했지만 
