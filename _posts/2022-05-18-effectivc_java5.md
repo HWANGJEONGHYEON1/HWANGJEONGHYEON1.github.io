@@ -118,7 +118,31 @@ public @interface ExceptionTest {
 - 메서드 참조는 람다의 간단 명료한 대안이 될 수 있다. 메서드 참조 쪽이 짧고 명확하다면 메서드 참조쓰고, 그렇지 않을때만 람다를 사용하라
 
 ## item44) 표준 함수형 인터페이스를 사용하라
-- 
+- 필요한 용도에 맞는게 있따면, 직접 구현하지말고 표준 함수형 인터페이스를 활용
+
+
+|---|---|---|
+|인터페이스|함수 시그니처| 예|
+|UnaryOperator<T> | T apply(T t) | String::toLowerCase|
+|BinaryOperator<T> | T apply(T t1, T t2) | BigInteger::add | 
+|Predicate<T> | boolean test(T t)| Collection::isEmpty()|
+|Function<T, R>| R apply(T t)| Arrays::asList|
+|Supplier<T>| T get() | Instant::now|
+|Consumer<T> | void accept(T t)| System.out::println|
+
+- Comparator 
+    - 자주 쓰이며 이르 자체가 용도를 명확히 설명해준다.
+    - 반드시 따라야하는 규약이 있다.
+    - 유용한 디폴트 메서드를 제공할 수 있다.
+- 의도를 명시하는 세가지 목적
+    - 해당 클래스의 코드나 설명 문서를 읽을 이에게 인터페이스가 람다용으로 설계된 것임을 알려준다.
+    - 해당 인터페이스가 추상 메서드를 오직 하나만 가지고 있어야 컴파일되게 해준다.
+    - 결과를 유지보수 과정에서 누군가 실수로 메서드를 추가하지 못하게 막아준다.
+    - 직접 만든 함수형 인터페이스에서는 @FunctionalInterface 애노테이션을 사용하라.
+
+
+## itemt45) 스트림은 주의해서 사용하라
+- 스트림과 반복 중 어느쪽이 나은지 확신하기 어렵다면 둘 다 작성해보고 나은쪽을 선택하라.
 
 ## item46) 스트림에서는 부작용없는 함수를 사용하라
 - 순수함수란?
