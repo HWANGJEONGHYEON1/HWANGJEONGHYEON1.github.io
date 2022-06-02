@@ -158,4 +158,37 @@ public @interface ExceptionTest {
     }
     ```
     
-    - 스트림, 람다, 메서드 참조를 사용했지만 
+    - 스트림, 람다, 메서드 참조를 사용했지만 스트림 코드를 가장한 반복적 코드다.
+    - 같은 기능의 반복적 코드보다 길고, 읽기 어렵고, 유지보수에도 좋지않다.
+    - forEach 연산은 스트림 계산 결과를 보고할 때만 사용하고 계산할 때는 쓰지말자.
+    - 수집기
+        - toList()
+        - toSet()
+        - toCollection(collectionFactory)
+    
+    ```java
+
+            Map<String, CoinColor> collect = Stream.of(CoinColor.values())
+                .collect(
+                        toMap(Object::toString, e -> e));
+
+            // 인수 3개를 받는 toMap은 어떤키와 그 키에 연관된 원소들 중 하나를 골라 연관 짓는 맵을 만들 때 유용하다.
+            // maxBy는 Comparator<T>를 입력받아 BinaryOperator<T>를 돌려준다.
+            // 이 경우 비교자 생성 메서드인 comparing이 maxBy에 넘겨줄 비교자를 반환하는대, 자신의 키 추출함수로는 Albums::sales를 받았다.
+            // 복잡해 보일 수 있지만 잘 읽힌다.
+            albums.collect(
+                toMap(Album::artist, a->a, maxBy(Album::sales));
+
+            
+            // 각 사이즈가 키가 되고 사이즈가 비슷한 것 들끼리 리스트가 만들어진다.
+            List<String> words = Arrays.asList("abc", "defc", "aa", "aaa", "bbbb", "cc", "dddddd");
+            words.stream()
+                .collect(groupingBy(word -> alphabetsize(word)))
+                .forEach((k, v) -> System.out.println(k + " " + v));
+            
+            ... 
+            private static int alphabetsize(String word) {
+                return word.length();
+            }
+    }
+    ```
