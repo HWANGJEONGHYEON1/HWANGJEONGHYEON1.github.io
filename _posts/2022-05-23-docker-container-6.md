@@ -111,3 +111,36 @@ leecloudo/stress:1.0 stress --cpu 4
 05b70693ff1f3acded3559e31a33ed59ca8154dcaf34e98f978988d55c08e84d
 
 ```
+
+
+## 도커 네트워크 
+- 정의
+    - 도커 설치 시 기본적으로 제공되는 docker0는 소프트웨어적으로 구현된 가상 이더넷 브리지 네트워크이고, 이것을 통해 격리된 컨테이너들의 상호 간 통신을 제공한다.
+    - 별도의 브리지 네트워크를 생성하여 연결 값으로 설정하지 않는다면, docker0에 연결되어 172.17.0.0/16 CIDR 범위로 IP주소가 할당된다.
+- 도커 컨테이너 및 서비스는 도커 네트워크를 통해 격리된 컨테이너 간의 네트워크 연결뿐만 아니라 도커 외의 다른 애플리케이션 워크로드와도 연결이 가능
+- 도커 네트워크의 하위 시스템 연결을 위해 도커 네트워크 드라이버를 사용하여 상호 간 통신이 가능해진다.
+
+```
+
+❯ docker run -it -d --name cantainer1 ubuntu:14.04
+0d403afdb9f2c6273752cb8a4e730a36470cbfe2266b946b9b74fa2a6a4b3e4a
+
+~
+❯ docker run -it -d --name cantainer2 ubuntu:14.04
+77885e4dad69a2b9cc3cb22371368eb0666ecad6312b86fd202ea2a68673a300
+
+❯ docker inspect -f "{{ .NetworkSettings.IPAddress }}" cantainer1
+172.17.0.6
+
+❯ docker inspect cantainer2 | grep Mac
+            "MacAddress": ~
+                    "MacAddress": ~
+
+~
+❯ docker exec cantainer1 route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172.17.0.1      0.0.0.0         UG    0      0        0 eth0
+172.17.0.0
+
+```
