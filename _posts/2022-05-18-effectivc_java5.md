@@ -118,7 +118,31 @@ public @interface ExceptionTest {
 - 메서드 참조는 람다의 간단 명료한 대안이 될 수 있다. 메서드 참조 쪽이 짧고 명확하다면 메서드 참조쓰고, 그렇지 않을때만 람다를 사용하라
 
 ## item44) 표준 함수형 인터페이스를 사용하라
-- 
+- 필요한 용도에 맞는게 있따면, 직접 구현하지말고 표준 함수형 인터페이스를 활용
+
+
+|---|---|---|
+|인터페이스|함수 시그니처| 예|
+|UnaryOperator<T> | T apply(T t) | String::toLowerCase|
+|BinaryOperator<T> | T apply(T t1, T t2) | BigInteger::add | 
+|Predicate<T> | boolean test(T t)| Collection::isEmpty()|
+|Function<T, R>| R apply(T t)| Arrays::asList|
+|Supplier<T>| T get() | Instant::now|
+|Consumer<T> | void accept(T t)| System.out::println|
+
+- Comparator 
+    - 자주 쓰이며 이르 자체가 용도를 명확히 설명해준다.
+    - 반드시 따라야하는 규약이 있다.
+    - 유용한 디폴트 메서드를 제공할 수 있다.
+- 의도를 명시하는 세가지 목적
+    - 해당 클래스의 코드나 설명 문서를 읽을 이에게 인터페이스가 람다용으로 설계된 것임을 알려준다.
+    - 해당 인터페이스가 추상 메서드를 오직 하나만 가지고 있어야 컴파일되게 해준다.
+    - 결과를 유지보수 과정에서 누군가 실수로 메서드를 추가하지 못하게 막아준다.
+    - 직접 만든 함수형 인터페이스에서는 @FunctionalInterface 애노테이션을 사용하라.
+
+
+## itemt45) 스트림은 주의해서 사용하라
+- 스트림과 반복 중 어느쪽이 나은지 확신하기 어렵다면 둘 다 작성해보고 나은쪽을 선택하라.
 
 ## item46) 스트림에서는 부작용없는 함수를 사용하라
 - 순수함수란?
@@ -134,4 +158,37 @@ public @interface ExceptionTest {
     }
     ```
     
-    - 스트림, 람다, 메서드 참조를 사용했지만 
+    - 스트림, 람다, 메서드 참조를 사용했지만 스트림 코드를 가장한 반복적 코드다.
+    - 같은 기능의 반복적 코드보다 길고, 읽기 어렵고, 유지보수에도 좋지않다.
+    - forEach 연산은 스트림 계산 결과를 보고할 때만 사용하고 계산할 때는 쓰지말자.
+    - 수집기
+        - toList()
+        - toSet()
+        - toCollection(collectionFactory)
+    
+    ```java
+
+            Map<String, CoinColor> collect = Stream.of(CoinColor.values())
+                .collect(
+                        toMap(Object::toString, e -> e));
+
+            // 인수 3개를 받는 toMap은 어떤키와 그 키에 연관된 원소들 중 하나를 골라 연관 짓는 맵을 만들 때 유용하다.
+            // maxBy는 Comparator<T>를 입력받아 BinaryOperator<T>를 돌려준다.
+            // 이 경우 비교자 생성 메서드인 comparing이 maxBy에 넘겨줄 비교자를 반환하는대, 자신의 키 추출함수로는 Albums::sales를 받았다.
+            // 복잡해 보일 수 있지만 잘 읽힌다.
+            albums.collect(
+                toMap(Album::artist, a->a, maxBy(Album::sales));
+
+            
+            // 각 사이즈가 키가 되고 사이즈가 비슷한 것 들끼리 리스트가 만들어진다.
+            List<String> words = Arrays.asList("abc", "defc", "aa", "aaa", "bbbb", "cc", "dddddd");
+            words.stream()
+                .collect(groupingBy(word -> alphabetsize(word)))
+                .forEach((k, v) -> System.out.println(k + " " + v));
+            
+            ... 
+            private static int alphabetsize(String word) {
+                return word.length();
+            }
+    }
+    ```
