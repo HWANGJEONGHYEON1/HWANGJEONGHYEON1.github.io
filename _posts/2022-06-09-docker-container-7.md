@@ -67,5 +67,4 @@ docker run -p 6379:6379 redis
 OK
 127.0.0.1:6379> get name
 "Hwang jh"
-
 ```
