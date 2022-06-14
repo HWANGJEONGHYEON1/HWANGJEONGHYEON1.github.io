@@ -199,3 +199,27 @@ public @interface ExceptionTest {
 - 하지만 반환하는 시퀀스의 크기가 메모리에 올려도 안전하다면 그대로 올려도 좋지만, 컬렉션을 반환한다는 이유로 큰 시퀀스를 메모리에 올리는 것은 안된다.
 - 원소시퀀스를 반환하는 메서드를 작성할 때는, 스트림으로 처리하기를 원하는 사용자와 반복으로 처리하길 원하는 사용자가 모두 있을 수 있음을 떠올리고, 양쪽을 다 만족시키려 노력해야한다.
 - 이미 원소들을 컬렉션에 담아 관리하고 있거나 컬렉션을 하나 더 만들더라도 될 정도로 원소개수가 적다면 ArrayList 같은 표준 컬렉션에 반환하라.
+
+## item43) 스트림 병렬화는 주의해서 적용하라
+- 데이터소스가 Stream.iterate거나 중간 연산으로 Limit을 쓰면 파이프라인 병렬화로는 성능 개선을 기대할 수 없다.
+- 스트림소스가 ArrayList, HashMap, HashSet, ConcurrentHashMap의 인스턴스거나 배열, int 범위, long 범위 일때 병렬화의 효과가 가장 좋다.
+- 스트림을 잘못 병렬화하면 성능이 나빠질 뿐만아니라 결과 자체가 잘모되거나 예상 못한 동작이 발생할 수 있다.
+- 파이(n) n보다 작거나 같은 소수의 개수를 계산하는 함수로 예를 보자
+
+```java
+static long pi(long n) {
+
+// 31 seconds
+    return LongStream.rangeClosed(2, n)
+            .mapToObj(BigInteger::valueOf)
+            .filter(i -> i.isProbablePrime(50))
+            .conut();
+    // 9 seconds
+    return LongStream.rangeClosed(2, n)
+        .parellel()
+        .mapToObj(BigInteger::valueOf)
+        .filter(i -> i.isProbablePrime(50))
+        .conut();
+}
+```
+
