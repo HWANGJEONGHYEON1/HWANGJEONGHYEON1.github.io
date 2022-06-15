@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Effectivce Java - 5"
-date:   2022-02-04 16:20:21 +0900
+date:   2022-05-18 16:20:21 +0900
 categories: java
 ---
 
