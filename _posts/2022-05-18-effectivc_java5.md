@@ -216,7 +216,7 @@ static long pi(long n) {
             .conut();
     // 9 seconds
     return LongStream.rangeClosed(2, n)
-        .parellel()
+        .parellel()ㅎ
         .mapToObj(BigInteger::valueOf)
         .filter(i -> i.isProbablePrime(50))
         .conut();
