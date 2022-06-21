@@ -148,3 +148,70 @@ if (cheese != null) && cheeses.contains(Cheese.STILION)) {
 - Collections.empty*()을 사용하자
 - 배열이라면 new CheesseArray[0]을 사용하면 된다.
 
+
+## Optional 반환은 신중히하라.
+- 자바 8 이전에는 메서드가 특정 조건에서 값을 반환할 수 없을 때 취할 수 있는 선택지가 2가지 있었다.
+    - 예외 던진다.
+    - null을 반환한다.
+- 자바 버전이 올라가면서 선택지 Optional 선택지가 생겼다.
+    - 보통 T를 반환해야하지만, 특정 조건에서는 아무것도 반환하지 말아야할 때 Optional<T>를 반환하도록 선언하면 된다.
+    - 예외를 던지는 메서드보다 유연하고, null을 반환하는 메서드보다 오류 가능성이 작다.
+
+```java
+public static <E extends Comparable<E>> E max(Collection<E> c) {
+    if (c.isEmpty()) {
+        throw new Illeaga...();
+    }
+
+    E result = null;
+    for (E e : c) {
+        if (result == null || e.compareTo(result) > 0)) {
+            result = Objects.requiredNonNull(e);
+        }
+    }
+
+    return result;
+}
+
+
+public static <E extends Comparable<E>> Optional<E> max(Collection<E> c) {
+    if (c.isEmpty()) {
+        return Optional.empty();
+    }
+
+    E result = null;
+    for (E e : c) {
+        if (result == null || e.compareTo(result) > 0)) {
+            result = Objects.requiredNonNull(e);
+        }
+    }
+
+    return Optional.of(result);
+}
+
+```
+
+- 빈 옵셔널은 Optional.empty()로 만들고, 값이 든 옵셔널은 Optional.of(value)를 생성
+- Optional.of(null)을 넣으면 NPE가 발생한다.
+- `옵셔널을 반환하는 메서드에서는 절대 null을 반환하지말자.` 
+    - 옵셔널을 도입한 취지를 완전히 무시하는 행위이다.
+
+- 옵셔널은 검사 예외와 취지가 비슷하다.
+    - 반환값이 없을수도 있음을 api 사용자에게 명확히 알려준다.
+- 활용
+
+```java
+String lastWordInLexico = max(words).orElse("없음");
+
+Toy myToy = max(toys).orElseThrow(TemperTantrumException::new);
+
+// 항상 값이 채워져있다고 가정한다.
+Element lastNobleGas = max(Elements.NOBLE_GASES).get();
+
+// 기본값을 설정하는 비용이 크다면 Suplier<T>를 인수로 받는 orElseGet을 사용하자. 
+```
+
+- 컬렉션, 스트림, 배열, 옵셔널 같은 컨테이너 타입은 옵셔널로 감싸면 안된다.
+- 결과가 없을 수 있으며, 클라이언트가 이 상황을 특별하게 처리해야한다면 Optional<T>로 반환한다.
+- 박싱된 기번 타입을 담은 옵셔널을 반환하는 일은 없도록 하자.
+    - Boolean, Byte, Character, Short, Float은 예외일 수 있다.
