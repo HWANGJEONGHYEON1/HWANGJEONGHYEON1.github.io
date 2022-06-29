@@ -47,3 +47,47 @@ static int random(int n) {
 - 세번쨰 이점은 따로 노력하지 않아도 성능이 지속적으로 개선이된다.
 - 네번째 이점은 기능이 점점많아진다. 라이브러리에 부족한 부분이 있다면 개발자 커뉴니티에서 이야기가 나오고 다음 릴리즈에 해당 기능이 추가될 수 있다.
 - 자바 개발자라면 util, lang, io 에 익숙해져야한다.
+
+## item60) 정확한 답이 필요하다면 float와 double은 피하라
+- float과 double은 공학 계산용으로 설계되었다.
+    - 이진 부동소수점 연산으로 쓰이며, `근사치`로 계산하도록 설계
+- `특히 금융 관련 계산과는 맞지 않는다.`
+- System.out.print(1.03 - 0.42);
+    - 0.6100000000001
+- 코딩시의 불편함이나 성능저하를 신경쓰지 않는다면 BigDecimal을 사용하라
+- 성능이 중요하고 소수점을 직접 추적할 수 있고 숫자가 크지 않다면 int, long을 사용하라.
+- 여덟자리 십진수를 long, 넘어간다면 BigDecimal을 사용해야한다.
+
+## item61) 박싱된 기본타입 보다는 기본타입을 사용하라
+- int, double, boolean에 대응하는 박싱된 기본타입은 Integer, Double, Boolean 이다.
+- 기본타입과 박싱된 기본타입의 주된 차이 3가지
+    1. 기본타입은 값만 가지고 있으나, 박싱된 기본 타입은 값에 더해 식별셩이란 속성을 갖는다.
+    2. 기본 타입은 언제나 유요하나, 박싱된 기본타입은 유효하지 않은 값, 즉 NULL을 가질 수 있다.
+    3. 메모리 사용면에서 더 효율적이다.
+
+```java
+
+        Comparator<Integer> naturealOrder = (i, j) -> (i < j) ? -1 : (i == j ? 0 : 1);
+
+
+        Comparator<Integer> naturalOrder = (i, j) -> (i < j) ? -1 : (i == j) ? 0 : 1;
+        int compare = naturalOrder.compare(new Integer(42), new Integer(42));
+        System.out.println(compare); // 결과는 0이어하지만, 1이 나온다. ?
+
+```
+
+- 위 방식이 잘못된 이유는 i 와 j가 참조하는 오토박싱된 Integer 인스턴스는 기본타입값으로 변환한다.
+- 두번째 검사에서 i == j 는 두 객체 참조 식별성을 검사한다. i와 j가 서로 다른 Integer의 인스턴스라면 같지 않게 된다.
+- 박싱된 기본타입에 연산자 == 를 사용하면 오류가 일어난다.
+- 밑의 방식으로 해결하자
+
+```java
+    Comparator<Integer> naturealOrder = (iBox, jBokx) -> {
+        int i = iBox;
+        int j = jBox;
+        return (i < j) ? -1 : (i == j) ? 0 : 1;
+    }
+```
+
+- 오토박싱이 박싱된 기본타입을 사용할 때 번거러움을 줄여주지만, 위험까지는 없애주지 않는다.
+- 언박싱 과정에서 NPE를 발생시킬 수 있다.
