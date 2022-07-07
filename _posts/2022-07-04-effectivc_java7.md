@@ -127,3 +127,59 @@ LinkedHashSet<Son> set = new LinkedHashSet<>();
     - 값 클래스 (Integer, String)
 - 적합한 인터페이스가 없다면 클래스의 계층구조 중 필요한 기능을 만족하는 가장 덜 구체적인 클래스를 타입으로 사용하자
 
+## item65) 리플렉션보다는 인터페이스를 사용하라
+- 리플렉션을 사용하면 임의의 클래스에 접근할 수 있다.
+    - Class 객체가 주어지면 생성자, 메서드, 필드에 해당하는 인스턴스를 가져올 수 있고, 인스턴들로는 그 클래스의 멤버이름, 필드타입, 메서드 시그너처등을 가져올 수 있다.
+- 나아가 인스턴스를 이용하여 연결된 실제 생성자, 메서드, 필드를 조작할 수 있다.
+- 단점
+    - 컴파일타임 타입 검사가 주는 이점을 하나도 누릴 수 없다.
+    - 리플렉션을 이용하면 코드가 지저분해지고 장황해진다.
+    - 성능이 저하된다.
+- 코드 분석도구나 의존관계 주입 프레임워크처럼 리플렉션을 써야하는 복잡한 애플리케이션이 몇 가지 있다.
+    - 리플렉션을 줄여가고 있음
+- 단점을 취하고 이점만 취할 수 있는 방법
+    - 리플렉션은 인스턴스 생성만 사용하고 만든 인스턴스는 인터페이스나 상위 클래스를 참조해 사용하자
+
+```java
+main() {
+    Class <? extends Set<String>> cl = null;
+
+    try {
+        cl = (Class <? extends Set<String>> cl) Class.forName(args[0]);
+    } catch(ClassNotFoundException e) {
+        fatalError("클래스를 찾을 수 없습니다.");
+    }
+
+    Constructor<? extedns Set<String>> cons = null;
+    try {
+        cons = cl.getDeclearedConstructor();
+    } catch(ClassNotFoundException e) {
+        fatalError("클래스를 찾을 수 없습니다.");
+    }
+
+    Set<String> s = null;
+    try {
+        s = cons.newInstance();
+    } catch (IllegalAccessException e) {
+        fatalError("생성자에 접근할 수 없습니다.");
+    } catch (Instantication e) {
+        fatalError("클래스를 인스턴스화 할 수 없습니다.");
+    } catch (InvocationTargetException e) {
+        fatalError("생성자가 예외를 던졋습니다.");
+    } catch (ClassCastException e) {
+        fatalError("Set을 구현하지 않은 클래스입니다..");
+    }
+
+    s.addAll(Arrays.asList(args).subList(1, args.length));
+    sout(s);
+}
+```
+
+- 위 예제는 단점 두가지가 있다.
+    - 런타임에 총 여섯가지나 되는 예외를 던질 수 있다.
+        - 인스턴스를 리플렉션없이 생성했다면, 컴파일타임에 잡아낼 수 있는 예외이다.
+    - 클래스 이름만으로 인스턴스를 생ㅅ어해내기 위해 25줄이나 되는 코드를 작성했다.
+        - 리플렉션이 아니라면 생성자호출 한줄로 끝냈다.
+- 리플렉션 예외를 각각 잡는 대신 리플렉션 예외 상위 클래스인 ReflectiveOperationException(자바 7이상)이 지원된다.
+
+## item66) 네이티브 메서드는 신중히 사용하라
