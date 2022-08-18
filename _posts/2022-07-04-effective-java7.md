@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Effectivce Java - 7"
+title:  "QueryDSL 적용(spring2.6, gradle 5.0 위"
 date:   2022-06-23 16:20:21 +0900
 categories: java
 ---
