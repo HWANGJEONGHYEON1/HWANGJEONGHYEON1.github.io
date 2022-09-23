@@ -6,7 +6,9 @@ categories: spring
 ---
 
 > ```Dependency injection```
- 
+
+- 런타임에 의존관계를 결정할 수 있다.
+
 ### 생성자 주입
   - 생성자 호출시점에 딱 1번만 호출되는것이 보장 ```불변, 필수```
   - 외부에서 객체를 변경할 수 있는 방법이 없다.
@@ -40,3 +42,6 @@ categories: spring
 - 프레임워크에 의존하지 않고 순수한 자바 언어의 특징을 잘 살릴 수 있는 방법
 
 
+## 스프링 빈 라이프사이클
+- Load Bean Definition : 스프링 컨테이너를 시작할 때 먼저 설정파일을 통해 DI를 할 Bean 정보를 BeanDifinition으로 생성한다.
+- DI 단계: 설정 파일을 통해 읽은 BeanDifinition 정보를 바탕으로 Bean 인스턴스를 생성하고 의존관계를 연결한다.
