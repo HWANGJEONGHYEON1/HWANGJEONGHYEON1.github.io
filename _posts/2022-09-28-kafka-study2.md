@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[study] kafka - 2"
-date:   2022-09-028 16:20:21 +0900
+date:   2022-09-28 16:20:21 +0900
 categories: kafka
 ---
 
