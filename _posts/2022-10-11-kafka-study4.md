@@ -122,5 +122,83 @@ configs.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, CustomPartitioner.class);
 - earliest: 설정하면 가장 작은 오프셋부터 읽기 시작
 - none 설정하면 컨슈머 그룹이 커밋한 기록이 있는지 찾아본다. 만약 커밋기록이 없으면 오류를 반환하고, 커밋기록이 있다면 기존 커밋 기록 이후 오프셋부터 읽기 시작한다. 기본 값은 latest
 
+### 컨슈머의 안전한 종료
+- wakeup() 메서드를 지원한다.
+- wakeup() 메서드가 실행된 이후 poll() 메서드가 호출되면 WakeupException 예외가 발생한다.
+
+```java
+private static KafkaConsumer<String, String> consumer;
+    public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new ShutdownThread());
+        Properties properties = new Properties();
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+
+        consumer = new KafkaConsumer<>(properties);
+        consumer.subscribe(List.of(TOPIC_NAME));
+
+        try {
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));
+                for (ConsumerRecord<String, String> record : records) {
+                    logger.info("record: {}", record);
+                }
+                consumer.commitSync();
+            }
+        } catch (WakeupException e) {
+            logger.warn("wakeup consumer");
+        } finally {
+            logger.warn("Consumer close");
+            consumer.close();
+        }
+
+    }
+
+    static class ShutdownThread extends Thread {
+        @Override
+        public void run() {
+            logger.info("Shutdonw hook");
+            consumer.wakeup();
+        }
+    }
+```
+
+### 멀티스레드 컨슈머
+- 카프카는 처리량을 늘리기 위해 파티션과 컨슈머 개수를 운영해야한다.
+- 컨슈머는 한 스레드에 할당하는것이 기본
+- 한 프로세스에 3개의 스레드를 운영하거나, 3개의 스레드에 각각 하나의 스레드를 가지고 운영할 수 있다.
+
+### 컨슈머 랙
+- 컨슈머 렉은 파티션의 최신 오프셋(Log-END-OFFSET)과 컨슈머 오프셋(CURRENT-OFFSET) 간의 차이다.
+    - 프로듀서는 데이터를 많이보내고, 컨슈머는 데이터의 처리량이 적기 때문에 간격이 날 수 밖에 없다 -> `컨슈머랙`
+- 프로듀서는 계속해서 데이터를 파티션에 저장하고 컨슈머는 자신이 처리할 수 있는 만큼의 데이터를 가져간다.
+- 컨슈머 렉은 정상동작하는 여부를 확인 할 수 있기 때문에 컨슈머 애플리케이션을 운영한다면 필수적으로 모니터링해야한다.
+- 컨슈머그룹과 토픽, 파티션별로 생성된다.
+- 파티션 개수와 컨슈머 개수를 늘린다.
+    - `우선적으로 컨슈머 랙을 확인해야한다.`
+- 외부 모니터링 툴
+    - 버로우(컨슈머 랙 모니터링 만을 위한)
+    - 컨플루언트 컨트롤 센터, 데이터 독
+
+### 카프카 버로우
+- 컨슈머 렉 체크 툴
+- REST API를 통해 컨슈머 그룹 별로 컨슈머 랙을 확인할 수 있다.
+
+
+## 전달 신뢰성
+- 멱등성이란, 여러번 연산을 수행하더라도, 동일한 결과를 나타내는 것을 뜻한다.
+- 멱등성 프로듀서는 동일한 데이터를 여러번 전송하더라도 카프카 클러스터에 단 한번 저장됨을 의미
+- 기본 프로듀서의 동작방식은 적어도 한번 전달(at least once delivery)을 지원 
+- 적어도 한번 전달은 클러스터에 데이터을 전송하여 저장할 때 적어도 한번 이상 적재할 수 있고 데이터 유실되지 않음을 뜻함.
+- 두번 적재할 가능성이 있음.
+- 2.x 버전에서는 enable.idempotence가 false 이지만, 3.0부터는 true
+    - exactly once delivery(정확히 한번 전달)
+    - true(acks = all) -> 응답을 무조건 주므로 성능에 상당히 영향을 준다.
+
+
+
 ## reference
 - https://www.inflearn.com/course/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D
