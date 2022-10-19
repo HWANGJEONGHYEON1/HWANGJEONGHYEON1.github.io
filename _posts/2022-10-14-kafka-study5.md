@@ -68,6 +68,55 @@ categories: kafka
 - 코파티셔닝이 되지 않은 KStream과 KTable을 조인해서 사용하고 싶다면, KTable을 GlobalKTable로 선언하여 사용하면 된다.
 - 큰 용량의 테이블은 사용하지 않는것이 좋다. 모든 파티션에 대해서 데이터를 다룬다.
 
+## 스트림즈 DSL 중요 옵션
+- bootstrap.servers: 프로듀서가 데이터를 전송할 대상 카프카 클러스터에 속한 브로커의 호스트이름:포트를 1개 이상 작성한다. 2개 이상 브로커 정보를 입력하여 일부 브로커에 이슈가 발생하더라도 접속하는데 이슈가 없도록 설정 가능하다.
+- application.id 스트림즈 애플리케이션을 구분하기 위한 고유한 아이디를 설정한다. 다른 로직을 가진 스트림즈 어플리케이션은 서로다른 id를 가진다.
+- 선택옵션
+    - default.key.serde: 레코드의 메시지 키를 직렬화, 역질렬화하는 클래스를 지정한다. 기본 값은 바이트 직렬화
+    - default.value.serde: 레코드의 메시지 값을 직렬화, 역질렬화하는 클래스를 지정한다. 기본 값은 바이트 직렬화
+    - num.stream.threads: 스트림 프로세싱 실행 시 실행될 스레드 개수를 지정한다. 기본값 1.
+    - state.dir: 상태기반 데이터 처리를 할 때 데이터를 저장할 때 디렉토리를 지정. 기본 값은 /tmp/kafka-streams.
+
+### 실행
+- bin/kafka-console-producer.sh --bootstrap-server my-kafka:9092 --topic stream_log
+- bin/kafka-console-consumer.sh --bootstrap-server my-kafka:9092 --topic stream_log_filter
+
+```java
+public class StreamsFilter {
+
+
+    private static String APPLICATION_NAME = "streams-filter-application";
+    private static String BOOTSTRAP_SERVER = "my-kafka:9092";
+    private static String STREAM_LOG = "stream_log";
+    private static String STREAM_LOG_FILTER = "stream_log_filter";
+
+    public static void main(String[] args) {
+
+        Properties props = new Properties();
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG, APPLICATION_NAME);
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
+        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+
+        StreamsBuilder builder = new StreamsBuilder();
+        KStream<String, String> streamLog = builder.stream(STREAM_LOG);
+
+        streamLog.filter((k, v) -> v.length() > 5).to(STREAM_LOG_FILTER);
+
+        KafkaStreams streams;
+        streams = new KafkaStreams(builder.build(), props);
+        streams.start();
+    }
+}
+
+```
+
+## KTable, KStream을 join()
+- KTable, KStream은 메시지 키를 기준으로 조인할 수 있다. 대부분의 데이터베이스는 정적으로 저장된 데이터를 조인하여 사용했지만, 카프카는 실시간으로 들어오는 데이터들을 조인할 수 있다.
+- 사용자의 이벤트 데이터를 디비에 저장하지 않고 조인하여 스트리밍처리 할 수 있다.
+
+
+
 
 ## reference
 - https://www.inflearn.com/course/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D

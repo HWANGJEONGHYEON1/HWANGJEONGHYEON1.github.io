@@ -90,6 +90,8 @@ categories: kafka
 - Code Commit
 - Code Gruru
 - CI/CD
+    - blue/green
+        - 새로운걸 만들어서 새로 옮긴다.
 
         
 
