@@ -8,7 +8,74 @@ categories: kafka
 > org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null];
 
 ## 1:N -> OneToMany에서 insert시 에러
-- 
+- 1:N 관계에서 연관관계 셋팅을 해주지 않아 에러발생.
+- 1:N => Gateway, Predicate 간의 관계
+- Create 객체를 받는대, filter와 predicates를 리스트로 받아서 바로 넘김.
+
+- 소스코드
+```java
+public class Gateway extends BaseEntity {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq")
+    private Long id;
+
+
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Predicate> predicates = new HashSet<>();
+
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Filter> filters = new HashSet<>();
+}
+public class Filter {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "filter_seq")
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "domain_seq")
+    @JsonBackReference
+    private GatewayRoute gateway;
+}
+
+pubilc class Service {
+    @Transactional
+    public void createGateway(List<GatewayCreateDto> requestDtos) {
+        for (GatewayCreateDto requestDto : requestDtos) {
+            GatewayRoute gatewayRoute = GatewayRoute.create(requestDto.getRouteId(), requestDto.getRouteUri(), requestDto.getRegId());
+
+
+
+            requestDto.getFilters()
+                    .forEach(filter -> gatewayRoute.addFilter(new Filter(filter)));
+
+            requestDto.getPredicates()
+                    .forEach(predicate -> gatewayRoute.addPredicate(new Predicate(predicate)));
+            gatewayRouteRepository.save(gatewayRoute);
+        }
+    }
+}
+
+```
+- 바로 save를 했지만, Gateway 엔티티에는 데이터가 insert 되지만, filter, predicates 엔티티에는 관련 키 값이 없어 위의 에러발생
+- 자바 객체로서 생각해보면 Gateway 객체에는 현재 값이 셋팅되어 있지만, Filter 객체는 아무것도 모르는 상태이다.
+- 게이트웨이 객체에 추가
+```java
+
+    public void addPredicate(Predicate predicate) {
+        this.predicates.add(predicate);
+        predicate.setGatewayRoute(this);
+    }
+
+    public void addFilter(Filter filter) {
+        this.filters.add(filter);
+        filter.setGatewayRoute(this);
+    }
+
+```
 
 ## reference
 - https://www.inflearn.com/course/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D
