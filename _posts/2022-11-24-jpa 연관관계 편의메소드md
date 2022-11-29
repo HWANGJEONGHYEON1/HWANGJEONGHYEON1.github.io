@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "스프링 Response 동작과정(how to response to json)"
-date:   2022-10-24 18:20:21 +0900
+title:  "JPA 연관관계 편의메소드 에러 발생"
+date:   2022-11-24 18:20:21 +0900
 categories: kafka
 ---
 
