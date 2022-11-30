@@ -86,7 +86,7 @@ CREATE TABLE `tb_filter_info` (
 ### config 클라이언트에서 디비에 적재 된 데이터 가져오기
 ```java
 
-Slf4j
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 @Getter
