@@ -95,7 +95,7 @@ public class PropertiesConfig {
     private final GatewayProperties gatewayProperties;
 
     // 스프링 로드 시점에 최초로 설정들을 셋팅
-    // 만약 디비의 값이 변경된다면 /servicemanager/refresh를 호출해줌으로써 현재 서비스중이 환경설정을 업데이트한다.
+    // 만약 디비의 값이 변경된다면 /servicemanager/refresh를 호출해줌으로써 현재 서비스중에 환경설정을 업데이트한다.
     @PostConstruct
     @EventListener(RefreshScopeRefreshedEvent.class)
     public void gatewayRoutes() {
@@ -114,8 +114,8 @@ public class PropertiesConfig {
         gatewayProperties.setRoutes(routes);
     
 
-    // GatewayProperties는 RouteDefinition를 의존하고 있어 해당 객체들의 값으 셋팅해준다.
-    // 하드 코딩 된 부분은 api의 응답스펙을 바꿈으로써 입맞에 맞게 해결하면된다.
+    // GatewayProperties는 RouteDefinition를 의존하고 있어 해당 객체들의 값을 셋팅해준다.
+    // 하드 코딩 된 부분은 api의 응답스펙을 바꿈으로써 입맞에 맞게 해결하면 된다.
     private RouteDefinition setRouteDefinition(DomainDto domainDto) throws URISyntaxException {
 
         Map<String, String> filterArgs = new LinkedHashMap<>();
