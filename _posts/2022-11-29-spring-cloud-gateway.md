@@ -30,6 +30,7 @@ spring:
 - Fetching config from server at : http://localhost:8888로 설정 파일들을 불러와 GatewayProperties에 값을 세팅해준다.
 - `위의 작업을 없애고 디비에서 불러오게 만든다.`
 
+
 ### 테이블 생성
 - predicate와 filter는 나중에 여러개가 들어올 가능성이 있으므로 1:N 관계로 생성
 ```sql
@@ -68,19 +69,19 @@ CREATE TABLE `tb_filter_info` (
 - JPA를 사용하여 넣었고 나머지 코드는 생략
 ```java
 
-   @Transactional
-    public void createGateway(List<GatewayCreateDto> requestDtos) {
-        for (GatewayCreateDto requestDto : requestDtos) {
-            GatewayRoute gatewayRoute = GatewayRoute.create(requestDto.getRouteId(), requestDto.getRouteUri(), requestDto.getRegId());
+@Transactional
+public void createGateway(List<GatewayCreateDto> requestDtos) {
+    for (GatewayCreateDto requestDto : requestDtos) {
+        GatewayRoute gatewayRoute = GatewayRoute.create(requestDto.getRouteId(), requestDto.getRouteUri(), requestDto.getRegId());
 
-            requestDto.getFilters()
-                    .forEach(filter -> gatewayRoute.addFilter(new Filter(filter)));
+        requestDto.getFilters()
+                .forEach(filter -> gatewayRoute.addFilter(new Filter(filter)));
 
-            requestDto.getPredicates()
-                    .forEach(predicate -> gatewayRoute.addPredicate(new Predicate(predicate)));
-            gatewayRouteRepository.save(gatewayRoute);
-        }
+        requestDto.getPredicates()
+                .forEach(predicate -> gatewayRoute.addPredicate(new Predicate(predicate)));
+        gatewayRouteRepository.save(gatewayRoute);
     }
+}
 ```
 
 ### config 클라이언트에서 디비에 적재 된 데이터 가져오기
