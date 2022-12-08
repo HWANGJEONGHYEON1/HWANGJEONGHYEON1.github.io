@@ -9,11 +9,13 @@ categories: spring, jpa
 
 ## 스프링 @Transactional
 - 이 어노테이션을 사용한이유는 디비에 데이터를 커밋, 롤백해주는 이유로 사용.
-- 전파레벨을 생각하게 됨
-- 첫 트랜잭션이 시작되면 다음 트랜잭션을 만낫을 때 부모 트랜잭션을 이어서 받는것이 스프링의 기본 설정 값.
+- 첫 트랜잭션이 시작되면 다음 트랜잭션을 만낫을 때 부모 트랜잭션을 이어서 받는것이 스프링의 기본 설정 값
+- 트랜잭션이 커밋이 되는 순간 flush가 되어 쿼리가 나감. (<- 이걸 생각못함)
 
 ## 문제
 - test 코드에 @Transactional을 걸어놓았는대, 
+- 테스트 메소드의 트랜잭션을 걸어, update 트랜잭션이 종속되어 아직 커밋이 안되어 업데이트 쿼리가 나가지 않음.
+- 히스토리에서 조회를 시도하지만, 아직 조회가 되지 않아 에러발생.
 
 ```java
 
@@ -74,5 +76,18 @@ categories: spring, jpa
         List<DomainHistory> updateDomainHistories = domainHistoryRepository.findByDomainSeq(updateDomainSeq, Sort.by(Sort.Direction.DESC, "id"));
         assertThat(updateDomainHistories.get(0).getHistoryType()).isEqualTo(HistoryType.UPDATE);
         assertThat(updateDomainHistories.get(1).getHistoryType()).isEqualTo(HistoryType.CREATE);
+    }
+```
+
+## 해결
+- 테스트의 @Transactional 어노테이션 제거
+- @AfterEach 어노테이션을 통해 해당 데이터 제거 
+  - 테스트 컨테이너를 사용해 실제 디비의 데이터와는 무관하다
+
+```java
+    @AfterEach
+    void tearsDown() {
+        domainHistoryRepository.deleteAll();
+        domainRepository.deleteAll();
     }
 ```
