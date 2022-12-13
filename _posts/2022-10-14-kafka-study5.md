@@ -79,6 +79,8 @@ categories: kafka
     - state.dir: 상태기반 데이터 처리를 할 때 데이터를 저장할 때 디렉토리를 지정. 기본 값은 /tmp/kafka-streams.
 
 ### 실행
+- bin/zookeeper-server-start.sh config/zookeeper.properties
+- bin/kafka-server-start.sh config/server.properties
 - bin/kafka-console-producer.sh --bootstrap-server my-kafka:9092 --topic stream_log
 - bin/kafka-console-consumer.sh --bootstrap-server my-kafka:9092 --topic stream_log_filter
 
