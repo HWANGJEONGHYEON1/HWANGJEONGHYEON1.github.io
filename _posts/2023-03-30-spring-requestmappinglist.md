@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "스프링 requestmapping 값 가져오기"
-date:   2023-01-31 23:20:21 +0900
-categories: kafka, spring
+date:   2023-03-31 23:20:21 +0900
+categories: spring
 ---
 
 > 사용하지 않는 API를 제거하기 위해 API 목록 뽑기
