@@ -312,3 +312,10 @@ categories: spring
 ## Cache-Control
 - Cache-Control: no-cache, no-store, must-revalidate > 캐시가 절대 되면 안될 떄
 - Pragma: no-cache
+- no-cache
+    - 데이터는 캐시해도 되지만, 항상 원서버에 검증해야함
+- no-store
+    - 데이터에 민감한 정보가 있으므로 저장하면 안됨
+- must-revalidate
+    - 캐시 만료 후 최초 조회시 원서버에 검증해야함
+    - 원 서버 접근 실패시 반드시 오류가 발생함 - Gateway Timeout(504)
