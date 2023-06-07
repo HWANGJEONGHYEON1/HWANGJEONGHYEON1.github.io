@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "RealMySQL - 4"
-date:   2023-006-01 23:20:21 +0900
+date:   2023-06-01 23:20:21 +0900
 categories: db, mysql
 ---
 
@@ -77,5 +77,23 @@ categories: db, mysql
     - 별도의 임시테이블이 필요치 않다.
 
 
+### Distinct 처리
+> 특정 컬럼의 유니크한 값만 조회할 때 사용, MIN(), MAX(), COUNT()와 같은 집합 함수와 함께 사용되는 경우와 집합 함수가 없는 경우로 나뉜다. 구분 되는 이유는 영향을 미치는 범위가 달라지기 때문이다. 집합함수와 같이 Distinct가 사용되는 쿼리의 실행계획에서 Distinct 처리가 인덱스를 사용하지 못할 때는 항상 임시테이블이 필요하다. 하지만 실행계획의 Extra 컬럼에는 "Using temporary"가 표시되지 않는다.
 
-
+- Select Distinct emp_no ..
+    - 유니크한 레코드만 가져오고자할 때 사용되고, GROUP BY와 같은 방식으로 처리된다.
+    - 정렬이 보장이 되지않는다.
+    - DISTINCT는 SELECT하는 레코드를 유니크하게 조회하는것이지, 컬럼을 유니크하게 조회하는 것이 아니다.
+- select Distinct first_name, last_name from employees;
+    - first_name + last_name 전체 유니크한 레코드를 가져온다.
+    - select distinct(first_name), last_name from employees
+        - 괄호를 없애버린고 위의 결과와 동일하게 나온다.
+- 집합함수와 함께 사용
+    - select count(distinct name) ~
+    - 내부적으로 위의 쿼리를 처리하기 위해 임시테이블을 사용한다.
+    - 레코드 건수가 많아지면 상당히 느려질 수 있다.
+- 임시테이블이 필요한쿼리
+    - Order BY와 GROUP BY에 명시된 컬럼이 다른 쿼리
+    - Order BY와 GROUP BY에 명시된 컬럼이 조인의 순서상 첫번째 테이블이 아닌 쿼리
+    - DISTINCT와 Order BY가 동시에 쿼리에 존재하는 경우 또는 DISTINCT가 인덱스로 처리 되지 못하는 쿼리
+    - UNION이나 UNION DISTINCT가 사용된 쿼리

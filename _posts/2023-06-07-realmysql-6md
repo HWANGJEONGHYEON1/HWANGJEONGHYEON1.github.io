@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "RealMySQL - 5"
+date:   2023-06-07 23:20:21 +0900
+categories: db, mysql
+---
+
+> RealMySQL
+
+# 실행계획
+> MySQL에서는 Explain이라는 명령으로 쿼리의 실행계획을 확인할 수 있는데, 여기에는 많은 정보가 출력된다. DBMS에서는 쿼리를 최적으로 실행하기 위해 각 테이블의 데이터가 어떤 분포로 저장되어 있는지 통계정보를 참조하며, 그러한 기본 데이터를 비교해 최적의 실행 계획을 수립하는 작업이 필요하다 => 옵티마이저
+
+## 실행 계획 분석 시 주의사항
+1. SELECT_type 주의사항
+- DERIVED
+    - FROM 절에서 사용된 서브쿼리로부터 발생한 임시테이블을 의미
+    - 임시테이블은 메모리에 저장될수도 있고 디스크에 저장될 수 있다.
+- UNCACHEABLE SUBQUERY
+    - 쿼리의 FROM 절 이외의 부분에서 사용하는 서브쿼리는 가능하면 MySQL 옵티마이저가 최대한 캐시되어 재사용 될 수 있게 유도한다. 하지만 사용자 변수나 일부 함수가 사용되는 경우에는 캐싱을 사용할 수 없다.
+- DEPENDENT SUBQUERY
+    - 쿼리의 from 절 이외의 부분에서 사용되는 서브쿼리가 자체적으로 실행되지 못하고, 외부 쿼리에서 값을 전달받아 실행되는 경우 DEPENDENT SUBQUERY가 표시된다.
+    - 이는 서브 쿼리거 먼저 실행되지 못하고 서브 쿼리가 외부 쿼리의 결과 값에 의존적이기 때문에 전체 쿼리의 성능을 느리게 만든다.
+    - 서브쿼리가 불필요하게 외부 쿼리의 값을 전달받고 있는지 검토해서, 가능하다면 외부쿼리의 의존성을 제거하는것이 좋다.
+
+2. Type 칼럼의 주의 대상
+- ALL, index
+    - index는 풀 인덱스 스캔을 의미, ALL은 풀 테이블 스캔을 의미
+    - 새로운 인덱스를 추가하거나, 쿼리의 요건을 변경하는 것이 좋다.
+
+3. key 칼럼의 주의 대상
+- 쿼리가 인덱스를 사용하지 못할 때 실행 계획의 key 컬럼에 아무값도 표시되지 않는다. 쿼리가 인덱스를 사용할 수 있도록 인덱스를 추가하거나, where 조건을 변경하는 것이 좋다.
+
+4. Rows 컬럼의 주의 대상
+- 쿼리가 실제 가져오는 레코드 수보다 훨씬 더 큰 값이 Rows 컬럼에 표시되는 경우에는 쿼리가 인덱스를 정상적으로 사용하고 있는지, 그리그 그 인덱스가 충분히 작업 범위를 좁혀 줄 수 있는 컬럼으로 구성됐는지 검토하는것이 좋다.
+- Rows 칼럼의 수치를 판단할 때 주의해야할 점은 LIMIT 포함된 쿼리라 하더라도 LIMIT의 제한은 ROWS 컬럼의 고려대상에서 제외된다. => LIMIT 1 로 1건만 SELECT하는 쿼리라 하더라도 Rows 컬럼에는 훨씬 큰 수치가 나타날 수 있으며 최적화된 쿼리일 수 있다.
+
+5. Extra 컬럼의 주의 대상
+- 쿼리가 요건을 제대로 반영하고 있는지 확인해야하는 경우 
+    - Full scan on null key
+    - impossible having
+    - impossible where
+    - impossible where noticed after reading cost tables
+    - no matching max/min
+    - no matching row in const table
+    - unique row not found
+        - > 위의 내용들은 버그가능성이 있을 지 집중적으로 검토하는것이 좋다.
+- 쿼리의 실행 계획이 좋지 않은 경우
+    - Range checked for each record
+    - using filesort
+    - using join buffer
+    - using temporary
+    - using where
+        - > 쿼리를 먼저 최적화 할 수 있는지 확인, 만약 실행계획의 Rows 칼럼의 값과 실제 select 되는 레코드의 수의 차이를 최대한 줄이는 것이 중요하다. 쿼리의 실행계획에서 이러한 문구가 사라질 수 있으면 최선이다.
+- 쿼리의 실행계획이 좋은 경우
+    - Distinct
+    - Using index
+    - Using index for group-by
+        - > 최적화되어 처리되고 있다.
