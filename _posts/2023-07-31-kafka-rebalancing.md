@@ -142,3 +142,27 @@ Z 노드를 활용 -> Z 노드는 개별 노드의 중요한 정보를 담고 �
     - 프로듀서는 기존 리더까지 1000 오프셋을 보냈지만, 팔로워 브로커는 오프셋이 800이면, 200개의 데이터가 유실
 - 리더를 기다릴것인가?
     - 그 동안 시스템이 장애발생 
+
+
+<hr>
+
+### 로그 파티션과 세그먼트
+> 카프카의 로그 메시지는 실제로 세그먼트로 저장이됨
+
+- 파티션은 여러개의 세그먼트로 구성되며 개별 세그먼트(000000~.log)는 데이터 용량이 차거나 일정 기간이 경과하면 close되고 새로운 세그먼트가 생성하여 데이터를 연속적으로 저장
+- 세그먼트가 close가 되면 브로커가 write 하지않고, read-only로 변경, 브로커는 여러개의 세그먼트 중 하나의 active 세그먼트에만 write read 수행, `하나의 파티션은 단 하나의 active 세그먼트를 가짐`
+- log.segments.bytes
+    - 개별 세그먼트의 최대 크기
+    - 지정된 크기를 넘으면 close
+    - topic config는 sements.bytes이며 기본 값은 이 옵션을 사용 -> 토픽으로 사용하는 것이 좋다.
+- log.roll.hours
+    - 개별 세그먼트가 유지되는 시간 기본 7일
+    - topic config는 segment.ms 
+- 세그먼트 생명주기
+    - active -> closed -> deleted, compact
+- log.cleanup.policy
+    - topic config는 cleanup.policy
+    - delete : log.retention.hours, log.retention.bytes 설정값에 따라 삭제
+    - compact : 최신 값의 메시지만 유지하도록 새그먼트 재 구성
+    - delete, compact: 함께 적용
+    
