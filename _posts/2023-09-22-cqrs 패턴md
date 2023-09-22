@@ -1,0 +1,141 @@
+---
+layout: post
+title:  "CQRS 패턴"
+date:   2023-08-23 23:20:21 +0900
+categories: book
+---
+
+> 생각없이 CQRS 패턴을 쓰고 있었던 문제 극복
+
+
+## CQRS 패턴이란
+- Command Query 분리
+    - Command: 변경을 가하는 행위
+        - `Command는 시스템의 상태를 변경시키는 대신 값을 반환하지 않는다.`
+    - Query: 시스템의 상태를 관찰할 수 있는 행위
+        - `시스템의 상태만 반환하기만 하고, 상태를 변경시키지 않아야한다.`
+- Command 모듈과 Query 모듈의 책임을 분리
+
+```java
+// Command 객체: 계좌 정보를 변경하는 명령
+public class UpdateAccountCommand {
+    private final String accountId;
+    private final BigDecimal balance;
+
+    public UpdateAccountCommand(String accountId, BigDecimal balance) {
+        this.accountId = accountId;
+        this.balance = balance;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+}
+
+// Command 핸들러: 계좌 정보 업데이트 로직을 처리
+public class UpdateAccountCommandHandler {
+    public void handle(UpdateAccountCommand command) {
+        // 계좌 정보 업데이트 로직 구현
+    }
+}
+
+// Query 객체: 계좌 정보를 조회하는 질의
+public class GetAccountQuery {
+    private final String accountId;
+
+    public GetAccountQuery(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+}
+
+// Query 핸들러: 계좌 정보 조회 로직을 처리
+public class GetAccountQueryHandler {
+    public AccountInfo handle(GetAccountQuery query) {
+        // 계좌 정보 조회 로직 구현
+        return new AccountInfo(/* 조회된 정보 */);
+    }
+}
+
+// 계좌 정보 객체
+public class AccountInfo {
+    // 계좌 정보 필드들
+}
+
+
+// 응용 프로그램 서비스: 명령과 질의 처리를 조정
+public class AccountService {
+    private final UpdateAccountCommandHandler commandHandler;
+    private final GetAccountQueryHandler queryHandler;
+
+    public AccountService(UpdateAccountCommandHandler commandHandler, GetAccountQueryHandler queryHandler) {
+        this.commandHandler = commandHandler;
+        this.queryHandler = queryHandler;
+    }
+
+    public void updateAccount(UpdateAccountCommand command) {
+        commandHandler.handle(command);
+    }
+
+    public AccountInfo getAccount(GetAccountQuery query) {
+        return queryHandler.handle(query);
+    }
+}
+```
+
+만약에 조회가 필요한 경우에는 어떻게 처리되는지?
+
+```java
+// Command 핸들러: 계좌 정보 업데이트 로직을 처리
+public class UpdateAccountBalanceCommandHandler {
+    private final GetAccountQueryHandler queryHandler;
+
+    public UpdateAccountBalanceCommandHandler(GetAccountQueryHandler queryHandler) {
+        this.queryHandler = queryHandler;
+    }
+
+    public void handle(UpdateAccountBalanceCommand command) {
+        // 계좌 정보 조회
+        AccountInfo accountInfo = queryHandler.handle(new GetAccountQuery(command.getAccountId()));
+
+        // 현재 잔액을 가져온 후 새로운 금액을 더함
+        BigDecimal currentBalance = accountInfo.getBalance();
+        BigDecimal newBalance = currentBalance.add(command.getAmountToAdd());
+
+        // 업데이트된 잔액을 저장
+        // (실제로는 저장 로직을 추가해야 함)
+    }
+}
+```
+
+### 장점
+- 성능 최적화: 읽기 쓰기 작업을 분리하므로 읽기전용 디비를 별도로 구축하여 성능 최적화가 가능
+- 스케일링: 높은 트래픽 처리에 용이 별도로 스케일아웃 가능
+- 복잡성 감소: 각각을 분리함으로써 코드를 단순화(?) 할 수 있다. => <i>단순한가?</i>
+
+### 단점
+- 복잡성 증가: 많은 코드가 도입됨
+- 설계의 어려움: 과연 올바르다고 생각할 수 있을까?
+- 읽기 쓰기 서비스가 분리되므로 데이터 일관성을 관리하기 어려움
+
+### 트랜잭션 관리
+- 명령(Command) 처리 내에서 트랜잭션
+    1. 명령(Command) 핸들러 내에서 트랜잭션을 시작하고, 명령이 성공적으로 처리되면 트랜잭션을 커밋
+    2. 명령(Command)이 실패하면 트랜잭션을 롤백하고 예외를 처리
+
+### 별도의 읽기/쓰기 DB를 사용할 때의 동기화 문제
+- 쓰기(DB-W)에서 데이터가 변경된 직후에 읽기(DB-R)에서 데이터를 조회할 경우, 데이터베이스 간 복제 및 동기화에 시간이 소요될 수 있다.
+    - 서비스에서는 변경된 데이터를 즉시 볼 수 없다.
+- `이벤트 모델`
+
+
+### 링크
+[참고 링크1](https://sejoung.github.io/2020/04/2020-04-28-Spring_and_Data_Synchronization_Between_Queries_and_Commands/#%EC%B0%B8%EC%A1%B0)
+[참고 링크2](https://techblog.pet-friends.co.kr/msa%EB%A5%BC-%EA%B0%80%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%B2%AB%EA%B1%B8%EC%9D%8C-cqrs-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%8F%84%EC%9E%85%EA%B8%B0-510206768a22)
