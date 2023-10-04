@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "서킷 브레이커"
+title:  "spring actuator"
 date:   2023-10-04 23:20:21 +0900
 categories: spring, actuator
 ---
