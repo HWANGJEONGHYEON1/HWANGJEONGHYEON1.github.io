@@ -88,5 +88,5 @@ management:
 
 
 ### 링크
-[참고 링크1](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints)
-[참고 링크2](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.implementing-custom)
+- [참고 링크1](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints)
+- [참고 링크2](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.implementing-custom)
