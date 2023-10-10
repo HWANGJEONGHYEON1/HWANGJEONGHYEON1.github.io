@@ -87,6 +87,23 @@ management:
 - @Timed 사용
 
 
+### 요약
+
+1. 스프링 부트 액추에이터는 HTTP와 JMX MBeans 모두의 엔드포인트를 제공한다.
+2. 엔드포인트는 스프링 부트 애플리케이션의 내부 활동을 볼 수 있게 한다.
+
+3. 대부분의 액추에이터 엔드포인트는 기본적으로 비활성화된다. 그러나 management.endpoints.web.exposure.include 속성과 management.endpoints.web.exposure.exclude 속성을 설정하여 선택적으로 노출시킬 수 있다.
+
+4. /loggers와 /env 같은 엔드포인트는 실행 중인 애플리케이션의 구성을 실시간으로 변경하는 쓰기 오퍼레이션을 허용한다.
+
+5. 애플리케이션의 빌드와 Git 커밋에 관한 상세 정보는 /info 엔드포인트에서 노출될 수 있다.
+6. 애플리케이션의 건강 상태는 외부에 통합된 애플리케이션의 건강 상태를 추적하는 커스텀 건강 지표에 의해 영향받을 수 있다.
+
+7. 커스텀 애플리케이션 메트릭은 Micrometer를 통해 등록할 수 있다. Micrometer는 벤더 중립적인 메트릭이며, 애플리케이션이 원하는 어떤 메트릭도 발행하여 서드파티 모니터링 시스템(예를 들어, Prometheus, Datadog, New Relic 등)에서 보일 수 있게 한다.
+
+8. 스프링 웹 애플리케이션의 다른 엔드포인트와 마찬가지로 액추에이터 엔드포인트는 스프링 시큐리티를 사용해서 보안을 처리할 수 있다.
+
+
 ### 링크
 - [참고 링크1](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints)
 - [참고 링크2](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.implementing-custom)
