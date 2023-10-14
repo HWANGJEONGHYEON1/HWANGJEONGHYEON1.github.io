@@ -18,6 +18,8 @@ categories: spring, actuator
 - metrics: 로거 설정확인 실시간 로그 레벨 변경 제공
 - quartz
 
+<hr>
+
 ### 보안문제
 actuator 를 통해 application의 다양한 정보를 확인할 수 있고, 특정 endpoint 에서는 실시간 변경도 가능하게 해준다. (ex, thread dump) 따라서 보안상 문제가 있을 수 있으므로 spring security 혹은 이와 유사한 방법으로 보안 위험을 해결함.  가장 쉬운 방법은 spring security 를 통해 /actuator url 에 대해 http basic auth 을 적용해서 id, pw 가 맞아야만 pass 되도록 권장
 
@@ -32,6 +34,7 @@ management:
         allowed-origins: http://domain.com
         allowed-methods: GET
 ```
+<hr>
 
 ### health
 - show-components
@@ -72,6 +75,7 @@ management:
 }
 ```
 
+<hr>
 
 ### counter
 > 캐시 hit 또는 http request 누적 횟수같은 것들을 사용할 때 가능
@@ -86,6 +90,7 @@ management:
 - CountedAspect 빈 등록 후
 - @Timed 사용
 
+<hr>
 
 ### 요약
 
