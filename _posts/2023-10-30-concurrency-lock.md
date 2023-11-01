@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Concurrency Control in JPA with Hibernate: Optimistic vs. Pessimistic Locking"
+title:  "Optimistic vs. Pessimistic Locking"
 date:   2023-10-30 23:20:21 +0900
 categories: spring, jpa, lock
 ---
